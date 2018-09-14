@@ -41,7 +41,33 @@ class UserProfile extends Component {
             <label for="username" class="col-sm-4">
               User Name
             </label>
-            <div class="col-sm-8 float-sm-left">
+            <div class="col-sm-5 float-sm-left">
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                onChange={this.handleNameChange}
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="username" class="col-sm-4">
+              Email
+            </label>
+            <div class="col-sm-5 float-sm-left">
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                onChange={this.handleNameChange}
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="username" class="col-sm-4">
+              Location
+            </label>
+            <div class="col-sm-5 float-sm-left">
               <input
                 type="text"
                 class="form-control"
@@ -51,7 +77,7 @@ class UserProfile extends Component {
             </div>
           </div>
           <div class="form-group row form-btn">
-            <div class="col-sm-5">
+            <div class="col-sm-12">
               <button type="submit" class="btn btn-primary mb-2 btn-color">
                 Submit
               </button>
