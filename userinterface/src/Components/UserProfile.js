@@ -7,21 +7,35 @@ class UserProfile extends Component {
     super(props);
 
     this.state = {
-      name: ""
+      name: "",
+      email: "",
+      location: ""
     };
     this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleLocationChange = this.handleLocationChange.bind(this);
   }
 
   handleNameChange(e) {
     this.setState({ name: e.target.value });
   }
 
+  handleEmailChange(e) {
+    this.setState({ email: e.target.value });
+  }
+
+  handleLocationChange(e) {
+    this.setState({ location: e.target.value });
+  }
+
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state.name);
 
     var user = {};
     user["name"] = this.state.name;
+    user["email"] = this.state.email;
+    user["location"] = this.state.location;
+    console.log(user);
     axios
       .post("/api/UserProfiles", user)
       .then(function(res) {
@@ -51,28 +65,28 @@ class UserProfile extends Component {
             </div>
           </div>
           <div class="form-group row">
-            <label for="username" class="col-sm-4">
+            <label for="useremail" class="col-sm-4">
               Email
             </label>
             <div class="col-sm-5 float-sm-left">
               <input
                 type="text"
                 class="form-control"
-                id="username"
-                onChange={this.handleNameChange}
+                id="useremail"
+                onChange={this.handleEmailChange}
               />
             </div>
           </div>
           <div class="form-group row">
-            <label for="username" class="col-sm-4">
+            <label for="userlocation" class="col-sm-4">
               Location
             </label>
             <div class="col-sm-5 float-sm-left">
               <input
                 type="text"
                 class="form-control"
-                id="username"
-                onChange={this.handleNameChange}
+                id="userlocation"
+                onChange={this.handleLocationChange}
               />
             </div>
           </div>
