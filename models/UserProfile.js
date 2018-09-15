@@ -3,8 +3,13 @@ const Schema = mongoose.Schema;
 
 const UserProfileSchema = new Schema({
   name: {
-    type: String,
-    required: true
+    type: String
+  },
+  email: {
+    type: String
+  },
+  location: {
+    type: String
   },
   date: {
     type: Date,
@@ -12,4 +17,4 @@ const UserProfileSchema = new Schema({
   }
 });
 
-module.exports = User = mongoose.model("User", UserProfileSchema);
+module.exports = UserProfile = mongoose.model("UserProfile", UserProfileSchema);

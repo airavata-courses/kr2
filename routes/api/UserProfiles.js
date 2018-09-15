@@ -11,13 +11,22 @@ router.get("/", (req, res) => {
     .then(userprofiles => res.json(userprofiles));
 });
 
+router.get("/fetchByMail/:emailId", (req, res) => {
+  var emailId = req.params.emailId;
+
+  UserProfile.findOne({ email: emailId }).then(userprofiles =>
+    res.json(userprofiles)
+  );
+});
+
 //@route  POST api/users
 router.post("/", (req, res) => {
-  console.log("At server" + JSON.stringify(req.body));
-  const newUser = new UserProfile({
-    name: req.body.name
+  let newUser = new UserProfile({
+    name: req.body.name,
+    email: req.body.email,
+    location: req.body.location
   });
-  console.log("At server" + req);
+
   newUser.save().then(item => res.json(item));
 });
 module.exports = router;
