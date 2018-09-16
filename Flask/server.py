@@ -12,53 +12,146 @@ CORS(app, support_credentials=True)
 
 def job_info():
    
-   full_time="false"
+   full_time=""
    userVal=request.values.to_dict(flat=True)
+   userVal_json=request.get_json()
 
    city=userVal['city']
    title=userVal['title']
    desc=userVal['desc']
    jobType=userVal['jobType']
 
-   print type(city),type(title),desc,jobType
 
-   if jobType == "Full Time":
+
+   try:
+      descJ=userVal_json['desc']
+   except (KeyError, TypeError):
+      return jsonify({"error": "desc not passed"}), 400
+   try:
+      jobTypeJ=userVal_json['jobType']
+   except (KeyError, TypeError):
+      return jsonify({"error": "jobType not passed"}), 400
+
+
+   if jobType=="true":
       full_time="true"
-      #print "Full time"
+   elif jobType=="false":
+      full_time="false"
+   else:
+      # print 'jobType',jobType
+      return jsonify({"error": "jobType not passed as true/false"}), 400
 
+   if (isinstance(desc, str)):
+      pass
+   else:
+      return jsonify({"error": "desc not passed as string"}), 400
+
+
+   
    
 
    if city=="" and title=="":
-      # print "options null"
-      # print 'full_time',full_time
-      # print("https://jobs.github.com/positions.json?search="+desc+"&full_time="+full_time)
+      
 
-      response=requests.get("https://jobs.github.com/positions.json?search="+desc+"&full_time="+full_time)
+      try:
+         response=requests.get("https://jobs.github.com/positions.json?search="+desc+"&full_time="+full_time)
+      except:
+         return jsonify({"error": "required fields not passed"}), 400
+
 
    elif city =="":
+      if (isinstance(title, str)):
+         pass
+      else:
+         return jsonify({"error": "title not passed as string"}), 400
       response=requests.get("https://jobs.github.com/positions.json?search="+desc+"&full_time="+full_time+"&search="+title)
 
    elif title =="":
+      if (isinstance(city, str)):
+         pass
+      else:
+         return jsonify({"error": "city not passed as string"}), 400
       response=requests.get("https://jobs.github.com/positions.json?search="+desc+"&full_time="+full_time+"&location="+city)
 
    else:
+
+      if (isinstance(city, str)):
+         pass
+      else:
+         return jsonify({"error": "city not passed as string"}), 400
+      if (isinstance(desc, str)):
+         pass
+      else:
+         return jsonify({"error": "desc not passed as string"}), 400
+      if (isinstance(title, str)):
+         pass
+      else:
+         return jsonify({"error": "title not passed as string"}), 400
+      
       response=requests.get("https://jobs.github.com/positions.json?search="+desc+"&full_time="+full_time+"&location="+city+"&search="+title)
          
 
 
 
-   # tech=test[0][0]
-   #response=requests.get("https://jobs.github.com/positions.json?search="+desc+"&search="+jobType)
-   # print "karan"
-   # print response.text
-   l=json.loads(response.text)
    
-   return jsonify({"result":l})
+   info=json.loads(response.text)
+   
+   return jsonify({"result":info}) ,200
    
 
-# @app.route('/python/')
-# def hello_python():
-#    return 'Hello Python'
+@app.route('/jobs/testing',methods=['POST','OPTIONS','GET'])
+@cross_origin(supports_credentials=True)
+
+def jobs_apiTesting():
+   return jsonify({"result":'US Naukri'}), 200
+
+@app.route('/jobs/total',methods=['POST','OPTIONS','GET'])
+@cross_origin(supports_credentials=True)
+
+def jobs_total():
+   # userVal=request.values.to_dict(flat=True)
+   userVal=request.get_json()
+   
+   full_time=""
+   try:
+      desc=userVal['desc']
+   except (KeyError, TypeError):
+      return jsonify({"error": "desc not passed"}), 400
+   try:
+      jobType=userVal['jobType']
+   except (KeyError, TypeError):
+      return jsonify({"error": "jobType not passed"}), 400
+
+   if jobType=="true":
+      full_time="true"
+   elif jobType=="false":
+      full_time="false"
+   else:
+      # print 'jobType',jobType
+      return jsonify({"error": "jobType not passed as true/false"}), 400
+
+
+   if (isinstance(desc, str)):
+      pass
+   else:
+      return jsonify({"error": "desc not passed as string"}), 400
+
+   if (isinstance(city, str)):
+      pass
+   else:
+      return jsonify({"error": "city not passed as string"}), 400
+
+
+   try:
+      response=requests.get("https://jobs.github.com/positions.json?search="+desc+"&full_time="+full_time)
+   except ValueError:
+      return jsonify({"error": "desc not passed"}), 400
+
+
+   total=json.loads(response.text)
+         
+   return jsonify({"result":len(total)}), 200
+
 
 if __name__ == '__main__':
    app.run()

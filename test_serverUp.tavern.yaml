@@ -1,0 +1,15 @@
+test_name: Make sure server is up properly
+
+stages:
+  - name: Make sure number is returned correctly
+    request:
+      url: http://localhost:5000/jobs/testing
+      # json:
+        # number: 5
+      method: POST
+      headers:
+        content-type: application/json
+    response:
+      status_code: 200
+      body:
+        result: 'US Naukri'

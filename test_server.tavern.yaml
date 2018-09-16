@@ -1,0 +1,32 @@
+test_name: Check invalid inputs are handled
+
+stages:
+  - name: Make sure invalid inputs don't cause an error
+    request:
+      url: http://localhost:5000/jobs/total
+      json:
+        #city: 1235
+        desc: 1234
+        jobType: 'true'
+      method: POST
+      headers:
+        content-type: application/json
+
+    response:
+      status_code: 400
+      body:
+        error: desc not passed as string 
+
+  - name: Make sure it raises an error if jobType isn't passed
+    request:
+      url: http://localhost:5000/jobs/total
+      json:
+        wrong_key: 5
+        desc: developer
+      method: POST
+      headers:
+        content-type: application/json
+    response:
+      status_code: 400
+      body:
+        error: jobType not passed
