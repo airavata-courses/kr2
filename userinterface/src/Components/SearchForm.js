@@ -16,14 +16,30 @@ class SearchForm extends Component {
 
     this.state = {
       job:{},
+      
       results:[],
     };
     // this.handleDescChange = this.handleDescChange.bind(this);
   }
-  static defaultProps = {
-    jobType: ['','Full Time', 'Part Time', 'Internship']
-  }
+  // static defaultProps = {
+  //   jobType: ['','Full Time', 'Part Time', 'Internship']
+  //}
 
+  getInitialState=()=> {
+    return {
+      selectedOption: 'true'
+    };
+  }
+  
+  
+  handleOptionChange=(changeEvent) => {
+  this.setState({
+    selectedOption: changeEvent.target.value
+    
+  });
+  console.log(this.state.selectedOption);
+}
+  
   handleSearchSubmit(e) {
 
     e.preventDefault();
@@ -80,10 +96,9 @@ class SearchForm extends Component {
 
 
   render() {
-    let jobTypeOptions = this.props.jobType.map(jobType => {
-     return <option key={jobType} value={jobType}>{jobType}</option>
+   
 
-   });
+
     return (
       <div className="container">
        <a href="/details" style ={searchlink}>Profile</a>
@@ -126,14 +141,31 @@ class SearchForm extends Component {
             </div>
           <div className ="form-group row" >
             <label className ="col-sm-2" >
-              Type
+              Limit jobType results to only Full-Time:
             </label>
             <div className = "col-sm-4 float-sm-left">
-              <select ref="jobType" className="form-control" required>
-                {jobTypeOptions}
-              </select>
-              </div>
-          </div>
+            <label>
+            <input type="radio" value="true" 
+                      checked={this.state.selectedOption === 'true'} 
+                      onChange={this.handleOptionChange}
+                      className ="form-control"
+                      ref="jobType" />
+                  YES
+            </label>
+            
+            <div className = "col-sm-4 float-sm-right">
+            <label>
+            <input type="radio" value="false" 
+                      checked={this.state.selectedOption === 'false'} 
+                      onChange={this.handleOptionChange}
+                      className ="form-control"
+                      ref="jobType" />
+                  NO
+            </label>
+            </div>
+            </div>
+            </div>
+           
           <div className="form-group row form-btn">
             <div className="col-sm-7">
               <button type="submit" className="btn btn-primary mb-2 btn-color">
