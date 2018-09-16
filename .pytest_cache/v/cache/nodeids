@@ -1,4 +1,0 @@
-[
-  "test_server.tavern.yaml::Check invalid inputs are handled", 
-  "test_serverUp.tavern.yaml::Make sure server is up properly"
-]
