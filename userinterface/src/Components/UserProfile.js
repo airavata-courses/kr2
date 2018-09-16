@@ -2,6 +2,14 @@ import React, { Component } from "react";
 
 import axios from "axios";
 
+const searchlink = {
+  paddingLeft:'800px',
+  fontSize: '20px',
+}
+const formStyle = {
+  paddingLeft:'300px',
+  paddingTop: '20px'
+}
 class UserProfile extends Component {
   constructor(props) {
     super(props);
@@ -49,50 +57,52 @@ class UserProfile extends Component {
 
   render() {
     return (
-      <div class="container-fluid" className="ApplicationForm">
-        <form onSubmit={this.handleSubmit}>
-          <div class="form-group row">
-            <label for="username" class="col-sm-4">
+      <div className="container">
+      <a href="/" style ={searchlink}>Search</a>
+      <h2>Registeration</h2>
+        <form onSubmit={this.handleSubmit} style={formStyle}>
+          <div className="form-group row">
+            <label className="col-sm-2">
               User Name
             </label>
-            <div class="col-sm-5 float-sm-left">
+            <div className="col-sm-4 float-sm-left">
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="username"
                 onChange={this.handleNameChange}
               />
             </div>
           </div>
-          <div class="form-group row">
-            <label for="useremail" class="col-sm-4">
+          <div className="form-group row">
+            <label className="col-sm-2">
               Email
             </label>
-            <div class="col-sm-5 float-sm-left">
+            <div className="col-sm-4 float-sm-left">
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="useremail"
                 onChange={this.handleEmailChange}
               />
             </div>
           </div>
-          <div class="form-group row">
-            <label for="userlocation" class="col-sm-4">
+          <div className="form-group row">
+            <label className="col-sm-2">
               Location
             </label>
-            <div class="col-sm-5 float-sm-left">
+            <div className="col-sm-4 float-sm-left">
               <input
                 type="text"
-                class="form-control"
+                className="form-control"
                 id="userlocation"
                 onChange={this.handleLocationChange}
               />
             </div>
           </div>
-          <div class="form-group row form-btn">
-            <div class="col-sm-12">
-              <button type="submit" class="btn btn-primary mb-2 btn-color">
+          <div className="form-group row form-btn">
+            <div className="col-sm-7">
+              <button type="submit" className="btn btn-primary mb-2 btn-color">
                 Submit
               </button>
             </div>
