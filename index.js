@@ -14,7 +14,10 @@ const db = require("./config/keys").mongoURI;
 
 //connect to MONGO
 mongoose
-  .connect(db)
+  .connect(
+    db,
+    { useNewUrlParser: true }
+  )
   .then(() => console.log("MongoDB connected....."))
   .catch(err => console.log(err));
 
@@ -24,3 +27,5 @@ app.use("/api/UserProfiles", UserProfiles);
 const port = process.env.PORT || 4000;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
+
+module.exports = app;
