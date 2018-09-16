@@ -7,8 +7,10 @@ install:
   - pip install -r requirements.txt
 
 
+before_script:
+  - python server.py &
 
 # command to run tests
 script:
-  
+   
   - py.test
