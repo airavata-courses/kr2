@@ -10,13 +10,16 @@ const searchlink = {
   paddingLeft:'800px',
   fontSize: '20px',
 }
+const radioStyle = {
+  width:'70%',
+}
 class SearchForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       job:{},
-      
+
       results:[],
     };
     // this.handleDescChange = this.handleDescChange.bind(this);
@@ -25,45 +28,57 @@ class SearchForm extends Component {
   //   jobType: ['','Full Time', 'Part Time', 'Internship']
   //}
 
-  getInitialState=()=> {
-    return {
-      selectedOption: 'true'
-    };
-  }
-  
-  
-  handleOptionChange=(changeEvent) => {
-  this.setState({
-    selectedOption: changeEvent.target.value
-    
-  });
-  console.log(this.state.selectedOption);
-}
-  
+  // getInitialState=()=> {
+  //   return {
+  //     selectedOption: 'true'
+  //   };
+  // }
+
+
+//   handleOptionChange=(changeEvent) => {
+//   this.setState({
+//     selectedOption: changeEvent.target.value
+//
+//   });
+//   console.log(this.state.selectedOption);
+// }
+
   handleSearchSubmit(e) {
 
     e.preventDefault();
     //console.log(this.state.desc);
     var bodyFormData = new FormData();
+    var jobTypeValue;
 
 
 
-    if(this.refs.desc.value === '' || this.refs.jobType.value===""){
+    if(this.refs.desc.value === '' ||(document.getElementById('radio1').checked ===false
+     && document.getElementById('radio2').checked ===false)){
       alert('Fields required');
 } else {
+  if (document.getElementById('radio1').checked){
+    jobTypeValue = "true";
+  }
+  else
+  {
+    jobTypeValue = "false";
+  }
   this.setState({job:{
     desc: this.refs.desc.value,
     city: this.refs.city.value,
     title: this.refs.title.value,
-    jobType: this.refs.jobType.value,
+    jobType: jobTypeValue,
   }}, function(){
 
       //var bodyFormData = new FormData();
+
       bodyFormData.set('desc',this.state.job['desc']);
       bodyFormData.set('city',this.state.job['city']);
       bodyFormData.set('title',this.state.job['title']);
       bodyFormData.set('jobType',this.state.job['jobType']);
-
+      console.log(this.state.job);
+      // console.log(bodyFormData.get('desc'),bodyFormData.get('city'),bodyFormData.get('jobType'),
+      // bodyFormData.get('title'));
       //bodyFormData.set('UserSecondName', 'myer');
 
       axios({
@@ -96,7 +111,7 @@ class SearchForm extends Component {
 
 
   render() {
-   
+
 
 
     return (
@@ -131,7 +146,7 @@ class SearchForm extends Component {
             <label className ="col-sm-2" >
               Job Title
             </label>
-            <div className = " col-sm-4 float-sm-left">
+            <div className = "col-sm-4 float-sm-left">
               <input
                 type="text"
                 className ="form-control"
@@ -141,31 +156,22 @@ class SearchForm extends Component {
             </div>
           <div className ="form-group row" >
             <label className ="col-sm-2" >
-              Limit jobType results to only Full-Time:
+              Limit results only to Full-Time
             </label>
-            <div className = "col-sm-4 float-sm-left">
-            <label>
-            <input type="radio" value="true" 
-                      checked={this.state.selectedOption === 'true'} 
-                      onChange={this.handleOptionChange}
-                      className ="form-control"
-                      ref="jobType" />
+            <div className = "col-sm-1 float-sm-left">
+            <input id = "radio1" type ="radio" style ={radioStyle}value="true"
+                      className ="form-control" name="jobType"
+                       />
                   YES
-            </label>
-            
-            <div className = "col-sm-4 float-sm-right">
-            <label>
-            <input type="radio" value="false" 
-                      checked={this.state.selectedOption === 'false'} 
-                      onChange={this.handleOptionChange}
+            </div>
+            <div className = "col-sm-1 float-sm-left">
+            <input type="radio" id = "radio2" style ={radioStyle} value="false"
                       className ="form-control"
-                      ref="jobType" />
+                      name="jobType" />
                   NO
-            </label>
             </div>
             </div>
-            </div>
-           
+
           <div className="form-group row form-btn">
             <div className="col-sm-7">
               <button type="submit" className="btn btn-primary mb-2 btn-color">
