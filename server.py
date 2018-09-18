@@ -124,13 +124,13 @@ def jobs_total():
    else:
       return jsonify({"error": "desc not passed as string"}), 400
 
-   try:
-      if (isinstance(city, str)):
-         pass
-      else:
-         return jsonify({"error": "city not passed as string"}), 400
-   except:
-      pass
+   # try:
+   #    if (isinstance(city, str)):
+   #       pass
+   #    else:
+   #       return jsonify({"error": "city not passed as string"}), 400
+   # except:
+   #    pass
 
 
    try:
