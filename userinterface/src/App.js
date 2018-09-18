@@ -3,6 +3,7 @@ import UserProfile from "./Components/UserProfile.js";
 import UserDetails from "./Components/UserDetails.js";
 import SearchForm from "./Components/SearchForm.js";
 import SearchResults from "./Components/SearchResults.js";
+import JobRecommendationForm from "./Components/jobRecommendation.js";
 import { BrowserRouter, Route } from "react-router-dom";
 import "./App.css";
 
@@ -34,6 +35,11 @@ class App extends Component {
               <SearchForm />
             </div>
           )}/>
+          <Route exact ={true} path = "/jobrecommend" render = {() => (
+          <div className="App">
+            <JobRecommendationForm />
+          </div>
+        )}/>
 
           <Route exact path="/searchresults" component={SearchResults}/>
         </div>
