@@ -9,7 +9,7 @@ def test_initial():
     test_client = test_app.test_client()
     test_app.testing = True
     init = test_client.get('/jobs/testing')
-    print(init)
+    # print(init)
     assert b"US Naukri" in init.data
 
 
@@ -23,14 +23,19 @@ def test_job():
     jobs = test_client.post('/jobs/total',headers=headers_content_form_data,
         data={'desc': 'node','jobType':'true'})
     data = json.loads(jobs.get_data(as_text=True))
-    #assert data["success"] == 1
+    #checking for response code
     assert jobs.status_code == 200
-'''    	
-    # Test if we are able to get error when token is wrong
-    test_app = app.flask_news("wrong_token")
+    	
+def test_parameters():
+
+    test_app = server.app
     test_client = test_app.test_client()
-    test_app.testing = True
-    news = test_client.get('/top_headlines')
-    data = json.loads(news.get_data(as_text=True))
-    assert data["success"] == 0
-'''
+    test_app.testing=True
+    headers_content_form_data = {'Content-Type': 'multipart/form-data'}
+    response = test_client.post('/job',headers=headers_content_form_data,
+        data={'desc': 'java','jobType': 'AnythingButTrueOrFalse'})
+
+    resText = json.loads(jobs.get_data(as_text=True))
+
+    assert b"jobType not passed as true/false" in resText.data
+    assert response.status_code == 400
