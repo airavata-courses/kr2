@@ -1,8 +1,10 @@
 #KR2
 
-Asumming docker is already installed
+##Skip this step if Docker is already installed on your system
+sudo ./install.sh
 
-steps to deploy locally
 
-docker build -t jobRec .
-docker run -p 3050:3050 -it jobRec
+
+###steps to deploy locally
+
+sudo ./run.sh

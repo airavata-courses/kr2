@@ -5,7 +5,7 @@ import (
 
   //"github.com/gin-gonic/contrib/static"
   "github.com/gin-gonic/gin"
-  "github.com/rs/cors"
+  "github.com/gin-contrib/cors"
 )
 
 func main() {
