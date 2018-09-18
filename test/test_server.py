@@ -13,16 +13,16 @@ def test_initial():
     assert b"US Naukri" in init.data
 
 '''
-def test_news():
+def test_job():
 
-    # Test if we are able to get news
-    test_app = app.flask_news(os.environ["NEWS_API_KEY"])
+    # Test if we are able to get jobs
+    test_app = server.app
     test_client = test_app.test_client()
     test_app.testing = True
-    news = test_client.get('/top_headlines')
+    jobs = test_client.get('/jobs/total')
     data = json.loads(news.get_data(as_text=True))
     assert data["success"] == 1
-
+    	
     # Test if we are able to get error when token is wrong
     test_app = app.flask_news("wrong_token")
     test_client = test_app.test_client()
