@@ -9,7 +9,7 @@ def test_initial():
     test_client = test_app.test_client()
     test_app.testing = True
     init = test_client.get('/jobs/testing')
-    print init
+    print(init)
     assert "US Naukri" == init['result']
 
 '''
