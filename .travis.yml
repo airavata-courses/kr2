@@ -1,0 +1,11 @@
+language: node_js
+node_js:
+  - "stable"
+# command to install dependencies
+install:
+  - npm install --save-dev mocha
+  - npm install --save-dev chai
+  - npm install
+# command to run tests
+script:
+  - npm test
