@@ -14,24 +14,12 @@ def job_info():
    
    full_time=""
    userVal=request.values.to_dict(flat=True)
-   userVal_json=request.get_json()
+   
 
    city=userVal['city']
    title=userVal['title']
    desc=userVal['desc']
    jobType=userVal['jobType']
-
-
-
-   try:
-      descJ=userVal_json['desc']
-   except (KeyError, TypeError):
-      return jsonify({"error": "desc not passed"}), 400
-   try:
-      jobTypeJ=userVal_json['jobType']
-   except (KeyError, TypeError):
-      return jsonify({"error": "jobType not passed"}), 400
-
 
    if jobType=="true":
       full_time="true"
@@ -109,8 +97,8 @@ def jobs_apiTesting():
 @cross_origin(supports_credentials=True)
 
 def jobs_total():
-   # userVal=request.values.to_dict(flat=True)
-   userVal=request.get_json()
+   userVal=request.values.to_dict(flat=True)
+   #userVal=request.get_json()
    
    full_time=""
    try:
