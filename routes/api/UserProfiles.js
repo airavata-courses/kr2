@@ -21,12 +21,18 @@ router.get("/fetchByMail/:emailId", (req, res) => {
 
 //@route  POST api/users
 router.post("/", (req, res) => {
-  let newUser = new UserProfile({
-    name: req.body.name,
-    email: req.body.email,
-    location: req.body.location
-  });
+  UserProfile.findOne({ email: req.body.email }, function(err, doc) {
+    if (doc) {
+      res.status(400);
+    } else {
+      let newUser = new UserProfile({
+        name: req.body.name,
+        email: req.body.email,
+        location: req.body.location
+      });
 
-  newUser.save().then(item => res.json(item));
+      newUser.save().then(item => res.json(item));
+    }
+  });
 });
 module.exports = router;
