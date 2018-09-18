@@ -20,7 +20,7 @@ def test_job():
     test_client = test_app.test_client()
     test_app.testing = True
     headers_content_form_data = {'Content-Type': 'multipart/form-data'}
-    jobs = test_client.post('/jobs/total',headers=TestClass.headers_content_form_data,
+    jobs = test_client.post('/jobs/total',headers=headers_content_form_data,
         data={'desc': 'node','jobType':'true'})
     data = json.loads(jobs.get_data(as_text=True))
     #assert data["success"] == 1
