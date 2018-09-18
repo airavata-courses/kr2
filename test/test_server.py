@@ -37,5 +37,5 @@ def test_parameters():
 
     resText = json.loads(response.get_data(as_text=True))
 
-    assert b"jobType not passed as true/false" in resText.data
+    assert resText['error']=="jobType not passed as true/false" 
     assert response.status_code == 400
