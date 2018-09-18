@@ -1,8 +1,8 @@
 package main
 
 import (
-    "bytes"
-    "encoding/json"
+    // "bytes"
+    // "encoding/json"
     "fmt"
     "io/ioutil"
     "net/http"
@@ -10,7 +10,7 @@ import (
 )
 
 func TestApi(t *testing.T) {
-    fmt.Println("Starting the test application...")
+    fmt.Printf("Starting the test application...")
     response, err := http.Get("http://localhost:3050/api")
     if err != nil {
         fmt.Printf("The HTTP request failed with error %s\n", err)
@@ -27,5 +27,5 @@ func TestApi(t *testing.T) {
     //     data, _ := ioutil.ReadAll(response.Body)
     //     fmt.Println(string(data))
     // }
-    fmt.Println("Terminating the application...")
+    fmt.Print("Terminating the application...")
 }
