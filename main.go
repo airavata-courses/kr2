@@ -1,4 +1,4 @@
-package goAPI
+package main
 
 import (
   "net/http"
@@ -7,7 +7,7 @@ import (
   "github.com/gin-gonic/gin"
 )
 
-func MockApi() {
+func main() {
   // Set the router as the default one shipped with Gin
   router := gin.Default()
 

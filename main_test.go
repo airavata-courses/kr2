@@ -1,4 +1,4 @@
-package goApi
+package main
 
 import (
     "bytes"
