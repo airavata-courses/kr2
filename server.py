@@ -14,19 +14,21 @@ def job_info():
    
    full_time=""
    userVal=request.values.to_dict(flat=True)
-   
-
-   city=userVal['city']
-   title=userVal['title']
    desc=userVal['desc']
    jobType=userVal['jobType']
+
+   if 'city' in userVal:
+      city=userVal['city']
+   if 'title' in userVal:
+      title=userVal['title']
+   
 
    if jobType=="true":
       full_time="true"
    elif jobType=="false":
       full_time="false"
    else:
-      print('jobType',jobType)
+      # print('jobType',jobType)
       return jsonify({"error": "jobType not passed as true/false"}), 400
 
    if (isinstance(desc, str)):
