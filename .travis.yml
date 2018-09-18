@@ -6,5 +6,8 @@ go:
  #- release
  #- tip
 
+before_script:
+ - go run main.go &
+
 script:
  - go test -v ./...
