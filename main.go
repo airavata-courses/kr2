@@ -3,7 +3,7 @@ package main
 import (
   "net/http"
 
-  "github.com/gin-gonic/contrib/static"
+  //"github.com/gin-gonic/contrib/static"
   "github.com/gin-gonic/gin"
   "github.com/rs/cors"
 )
@@ -15,7 +15,10 @@ func main() {
   // Serve frontend static files
   // router.Use(static.Serve("/", static.LocalFile("./views", true)))
 
-  router.Use(cors.Default())
+  //router.Use(cors.Default())
+  config := cors.DefaultConfig()
+  config.AllowAllOrigins = true
+  router.Use(cors.New(config))
 
   // Setup route group for the API
   Goapi := router.Group("/api")
