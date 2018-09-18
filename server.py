@@ -26,12 +26,13 @@ def job_info():
    elif jobType=="false":
       full_time="false"
    else:
-      # print 'jobType',jobType
+      print('jobType',jobType)
       return jsonify({"error": "jobType not passed as true/false"}), 400
 
    if (isinstance(desc, str)):
       pass
    else:
+      #print(type(desc)),desc
       return jsonify({"error": "desc not passed as string"}), 400
 
 
@@ -41,10 +42,9 @@ def job_info():
    if city=="" and title=="":
       
 
-      try:
-         response=requests.get("https://jobs.github.com/positions.json?search="+desc+"&full_time="+full_time)
-      except:
-         return jsonify({"error": "required fields not passed"}), 400
+      
+      response=requests.get("https://jobs.github.com/positions.json?search="+desc+"&full_time="+full_time)
+      
 
 
    elif city =="":
