@@ -35,7 +35,7 @@ def test_parameters():
     response = test_client.post('/job',headers=headers_content_form_data,
         data={'desc': 'java','jobType': 'AnythingButTrueOrFalse'})
 
-    resText = json.loads(jobs.get_data(as_text=True))
+    resText = json.loads(response.get_data(as_text=True))
 
     assert b"jobType not passed as true/false" in resText.data
     assert response.status_code == 400
