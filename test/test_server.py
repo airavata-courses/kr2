@@ -5,7 +5,7 @@ import json
 
 
 def test_initial():
-    test_app = server
+    test_app = server.app
     test_client = test_app.test_client()
     test_app.testing = True
     init = test_client.get('/jobs/testing')
