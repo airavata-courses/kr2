@@ -3,13 +3,13 @@ import React, { Component } from "react";
 import axios from "axios";
 
 const searchlink = {
-  paddingLeft:'800px',
-  fontSize: '20px',
-}
+  paddingLeft: "800px",
+  fontSize: "20px"
+};
 const formStyle = {
-  paddingLeft:'300px',
-  paddingTop: '20px'
-}
+  paddingLeft: "300px",
+  paddingTop: "20px"
+};
 class UserProfile extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +17,8 @@ class UserProfile extends Component {
     this.state = {
       name: "",
       email: "",
-      location: ""
+      location: "",
+      isvalid: true
     };
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -43,13 +44,15 @@ class UserProfile extends Component {
     user["name"] = this.state.name;
     user["email"] = this.state.email;
     user["location"] = this.state.location;
-    console.log(user);
+
     axios
       .post("/api/UserProfiles", user)
       .then(function(res) {
         console.log(res);
+        alert("User Registration Succesful!");
       })
       .catch(function(err) {
+        alert("User exists with this mail id");
         console.log(err);
       });
     event.target.reset();
@@ -58,16 +61,17 @@ class UserProfile extends Component {
   render() {
     return (
       <div className="container">
-      <a href="/" style ={searchlink}>Search</a>
-      <h2>Registeration</h2>
+        <a href="/" style={searchlink}>
+          Search
+        </a>
+        <h2>Registration</h2>
         <form onSubmit={this.handleSubmit} style={formStyle}>
           <div className="form-group row">
-            <label className="col-sm-2">
-              User Name
-            </label>
+            <label className="col-sm-2">User Name</label>
             <div className="col-sm-4 float-sm-left">
               <input
                 type="text"
+                required
                 className="form-control"
                 id="username"
                 onChange={this.handleNameChange}
@@ -75,12 +79,11 @@ class UserProfile extends Component {
             </div>
           </div>
           <div className="form-group row">
-            <label className="col-sm-2">
-              Email
-            </label>
+            <label className="col-sm-2">Email</label>
             <div className="col-sm-4 float-sm-left">
               <input
                 type="text"
+                required
                 className="form-control"
                 id="useremail"
                 onChange={this.handleEmailChange}
@@ -88,9 +91,7 @@ class UserProfile extends Component {
             </div>
           </div>
           <div className="form-group row">
-            <label className="col-sm-2">
-              Location
-            </label>
+            <label className="col-sm-2">Location</label>
             <div className="col-sm-4 float-sm-left">
               <input
                 type="text"
@@ -107,6 +108,7 @@ class UserProfile extends Component {
               </button>
             </div>
           </div>
+          <div class="col-sm-5" />
         </form>
       </div>
     );
