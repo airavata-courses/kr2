@@ -10,7 +10,7 @@ def test_initial():
     test_app.testing = True
     init = test_client.get('/jobs/testing')
     print(init)
-    assert "US Naukri" == init['result']
+    assert b"US Naukri" in init.data
 
 '''
 def test_news():
