@@ -34,23 +34,18 @@ class UserDetails extends Component {
           this.setState({ userName: res.data.name });
           this.setState({ location: res.data.location });
           this.setState({ email: res.data.email });
+          this.handleDisplayChange(true);
         } else {
           this.setState({ isSubmitted: false });
           this.setState({ userName: "" });
         }
       })
       .catch(err => {
-        //alert("Inavlid email id, please provide registered email id");
         console.log(err);
-        this.setState({ isSubmitted: false });
+        alert("Please enter registered email id");
+        this.handleDisplayChange(false);
       });
 
-    //Display the details
-    if (this.state.email !== "") {
-      this.handleDisplayChange(true);
-    } else {
-      alert("Please enter registered email id");
-    }
     event.target.reset();
   };
 
@@ -86,13 +81,9 @@ class UserDetails extends Component {
                   </button>
                   <p> If you are a new user, please register first</p>
                 </div>
-
                 <div class="col-sm-5">
-                  {this.state.userName === "" && (
-                    <div class="alert alert-danger" role="alert">
-                      User not present
-                    </div>
-                  )}
+                  {this.state.userName === "" &&
+                    alert("Please enter registered email id")}
                 </div>
               </div>
             </form>
@@ -100,6 +91,9 @@ class UserDetails extends Component {
         ) : (
           <div>
             <div>
+              <a className="navigationlink" href="/">
+                Search
+              </a>
               {this.state.userName !== "" && (
                 <div class="card">
                   <h1>{this.state.userName}</h1>

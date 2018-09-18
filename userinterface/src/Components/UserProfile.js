@@ -49,8 +49,10 @@ class UserProfile extends Component {
       .post("/api/UserProfiles", user)
       .then(function(res) {
         console.log(res);
+        alert("User Registration Succesful!");
       })
       .catch(function(err) {
+        alert("User exists with this mail id");
         console.log(err);
       });
     event.target.reset();
