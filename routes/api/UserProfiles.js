@@ -21,9 +21,10 @@ router.get("/fetchByMail/:emailId", (req, res) => {
 
 //@route  POST api/users
 router.post("/", (req, res) => {
-  UserProfile.findOne({ email: req.body.email }, function(err, doc) {
+  UserProfile.findOne({ email: req.body.email }, (err, doc) => {
     if (doc) {
-      res.status(400);
+      res.status(400).end();
+      return;
     } else {
       let newUser = new UserProfile({
         name: req.body.name,
