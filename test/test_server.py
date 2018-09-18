@@ -1,11 +1,11 @@
 import pytest
-import app
+import server
 import os
 import json
 
 
 def test_initial():
-    test_app = app.job_info()
+    test_app = server
     test_client = test_app.test_client()
     test_app.testing = True
     init = test_client.get('/jobs/testing')
