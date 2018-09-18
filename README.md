@@ -2,10 +2,12 @@
 
 please run the following command to install the dependencies
 
-pip install -r requirements.txt
+"Assuming python 3 is already installed"
+
+pip3 install -r requirements.txt
 
 execute the command to start the flask server
 
-python server.py
+python3 server.py
 
 
