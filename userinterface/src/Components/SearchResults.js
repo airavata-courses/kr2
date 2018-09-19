@@ -22,6 +22,7 @@ class SearchResults extends Component {
     return (
       <div className="App">
           <a href="/" style ={searchlink}>Search Again</a>
+          
          <h2>Displaying {this.props.location.state.results.length} results</h2>
          <br/>
          <div className ="container">

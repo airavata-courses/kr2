@@ -6,14 +6,17 @@ const formStyle = {
   paddingLeft:'300px',
   paddingTop: '20px'
 }
-
+const searchlink = {
+  paddingLeft:'800px',
+  fontSize: '20px',
+}
 class JobRecommendationForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
 
-      results:"",
+      results:[],
     };
   }
 
@@ -23,11 +26,19 @@ class JobRecommendationForm extends Component {
     e.preventDefault();
     axios({
       method: 'get',
-      url: 'http://localhost:3050/jobrec',
+      url: 'http://localhost:3050/jobrec/',
       config: { headers: {'Content-Type': 'application/json','crossDomain': true }}
     })
-        .then(function(res) {
-          console.log(res);
+        // .then(function(res) {
+        //   console.log(res.data);
+        //
+        // })
+        .then(response => {
+          let data ={
+            results: response.data['message'].length===0 ?{1:0}:response.data['message'],
+          };
+          this.setState(data);
+          console.log(this.state.results);
         })
         .catch(function(err) {
           console.log(err);
@@ -43,6 +54,7 @@ class JobRecommendationForm extends Component {
 
     return (
       <div className="container">
+      <a href="/" style ={searchlink}>Search</a>
        <h2> Job Recommendation </h2>
         <form onSubmit={this.handleRecommendSubmit.bind(this)} style ={formStyle}>
 
@@ -55,7 +67,7 @@ class JobRecommendationForm extends Component {
           </div>
         </form>
         <br/>
-
+        {this.state.results}
       </div>
     );
   }

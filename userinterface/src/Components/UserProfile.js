@@ -108,7 +108,7 @@ class UserProfile extends Component {
               </button>
             </div>
           </div>
-          <div class="col-sm-5" />
+          <div className="col-sm-5" />
         </form>
       </div>
     );

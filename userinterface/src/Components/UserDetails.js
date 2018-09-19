@@ -54,34 +54,36 @@ class UserDetails extends Component {
     return (
       <div>
         {!isSubmitted ? (
-          <div class="container-fluid" className="ApplicationForm">
+          <div className="container">
             <a className="navigationlink" href="/profile">
+
               User Registration
             </a>
+            <a className="navigationlink1" href="/">Search </a>
             <form onSubmit={this.handleSubmit}>
-              <div class="form-group row">
-                <label for="useremail" class="col-sm-4">
+              <div className="form-group row">
+                <label className="col-sm-4">
                   Email
                 </label>
-                <div class="col-sm-5 float-sm-left">
+                <div className="col-sm-4 float-sm-left">
                   <input
                     type="text"
                     required
-                    class="form-control"
+                    className="form-control"
                     id="useremail"
                     onChange={this.handleEmailChange}
                   />
                 </div>
               </div>
 
-              <div class="form-group row form-btn">
-                <div class="col-sm-12">
-                  <button type="submit" class="btn btn-primary mb-2 btn-color">
+              <div className="form-group row form-btn">
+                <div className="col-sm-12">
+                  <button type="submit" className="btn btn-primary mb-2 btn-color">
                     Go
                   </button>
                   <p> If you are a new user, please register first</p>
                 </div>
-                <div class="col-sm-5">
+                <div className="col-sm-5">
                   {this.state.userName === "" &&
                     alert("Please enter registered email id")}
                 </div>
@@ -95,7 +97,7 @@ class UserDetails extends Component {
                 Search
               </a>
               {this.state.userName !== "" && (
-                <div class="card">
+                <div className="card">
                   <h1>{this.state.userName}</h1>
                   <p>{this.state.email}</p>
                   <p>{this.state.location}</p>

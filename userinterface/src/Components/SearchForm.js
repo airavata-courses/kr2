@@ -10,6 +10,10 @@ const searchlink = {
   paddingLeft:'800px',
   fontSize: '20px',
 }
+const searchlink1 = {
+  paddingLeft:'40px',
+  fontSize: '20px',
+}
 const radioStyle = {
   width:'70%',
 }
@@ -24,24 +28,6 @@ class SearchForm extends Component {
     };
     // this.handleDescChange = this.handleDescChange.bind(this);
   }
-  // static defaultProps = {
-  //   jobType: ['','Full Time', 'Part Time', 'Internship']
-  //}
-
-  // getInitialState=()=> {
-  //   return {
-  //     selectedOption: 'true'
-  //   };
-  // }
-
-
-//   handleOptionChange=(changeEvent) => {
-//   this.setState({
-//     selectedOption: changeEvent.target.value
-//
-//   });
-//   console.log(this.state.selectedOption);
-// }
 
   handleSearchSubmit(e) {
 
@@ -49,8 +35,6 @@ class SearchForm extends Component {
     //console.log(this.state.desc);
     var bodyFormData = new FormData();
     var jobTypeValue;
-
-
 
     if(this.refs.desc.value === '' ||(document.getElementById('radio1').checked ===false
      && document.getElementById('radio2').checked ===false)){
@@ -70,27 +54,18 @@ class SearchForm extends Component {
     jobType: jobTypeValue,
   }}, function(){
 
-      //var bodyFormData = new FormData();
-
       bodyFormData.set('desc',this.state.job['desc']);
       bodyFormData.set('city',this.state.job['city']);
       bodyFormData.set('title',this.state.job['title']);
       bodyFormData.set('jobType',this.state.job['jobType']);
       console.log(this.state.job);
-      // console.log(bodyFormData.get('desc'),bodyFormData.get('city'),bodyFormData.get('jobType'),
-      // bodyFormData.get('title'));
-      //bodyFormData.set('UserSecondName', 'myer');
-
       axios({
     method: 'post',
     url: 'http://localhost:5000/job',
     data: bodyFormData,
     config: { headers: {'Content-Type': 'multipart/form-data','crossDomain': true }}
     })
-    // .then(function (response) {
-    //     //handle success
-    //     console.log(response.data['result'][0]['company']);
-    // })
+
     .then(response => {
       let data ={
         results: response.data['result'].length===0 ?{1:0}:response.data['result'],
@@ -117,6 +92,7 @@ class SearchForm extends Component {
     return (
       <div className="container">
        <a href="/details" style ={searchlink}>Profile</a>
+       <a href="/jobrecommend"style ={searchlink1}>Recommendation</a>
        <h2> US Naukri </h2>
         <form onSubmit={this.handleSearchSubmit.bind(this)} style ={formStyle}>
           <div className="form-group row">
