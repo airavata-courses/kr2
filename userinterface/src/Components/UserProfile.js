@@ -2,10 +2,6 @@ import React, { Component } from "react";
 
 import axios from "axios";
 
-const searchlink = {
-  paddingLeft: "800px",
-  fontSize: "20px"
-};
 const formStyle = {
   paddingLeft: "300px",
   paddingTop: "20px"
@@ -61,9 +57,20 @@ class UserProfile extends Component {
   render() {
     return (
       <div className="container">
-        <a href="/" style={searchlink}>
-          Search
-        </a>
+        <div className="row">
+          <div class="col-md-6" />
+          <div class="col-md-4 text-right">
+            <a className=".navbar-right" href="/">
+              Search
+            </a>
+          </div>
+          <div class="col-md-2 text-right">
+            <a className="" href="/details">
+              UserProfile
+            </a>
+          </div>
+        </div>
+
         <h2>Registration</h2>
         <form onSubmit={this.handleSubmit} style={formStyle}>
           <div className="form-group row">
