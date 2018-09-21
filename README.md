@@ -2,7 +2,7 @@
 Fall 2018 Project Team
 
 # Project Wiki
- https://github.com/airavata-courses/kr2/wiki/KR2:-project-idea
+ https://github.com/airavata-courses/kr2/wiki/US-Naukri
 
 # Starting the project
-  https://github.com/airavata-courses/kr2/wiki/KR2:-Project-Idea#starting-the-application
+  https://github.com/airavata-courses/kr2/wiki/US-Naukri#starting-the-application
