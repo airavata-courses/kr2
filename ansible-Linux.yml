@@ -1,0 +1,204 @@
+# Playbook to deploy KR2's First Milestone on bare metal system
+
+- name: Git Clone from KR2 Repo 
+  hosts: localhost
+  tasks:
+
+    - name: Git Clone JobRec branch
+      git:
+        repo: 'https://github.com/airavata-courses/kr2.git'
+        version: JobRec_Go
+        dest: "{{playbook_dir}}/JobRec_Go"
+        clone: yes
+        force: yes
+      
+
+    - name: Git Clone JobSearch branch
+      git:
+        repo: 'https://github.com/airavata-courses/kr2.git'
+        version: JobSearch_Flask
+        dest: "{{playbook_dir}}/JobSearch_Flask"
+        clone: yes
+        force: yes
+
+    - name: Git Clone Node Mongo branch
+      git:
+        repo: 'https://github.com/airavata-courses/kr2.git'
+        version: NodeMongo
+        dest: "{{playbook_dir}}/NodeMongo"
+        clone: yes
+        force: yes
+
+    - name: Git Clone ReactUI branch
+      git:
+        repo: 'https://github.com/airavata-courses/kr2.git'
+        version: ReactUI
+        dest: "{{playbook_dir}}/ReactUI"
+        clone: yes
+        force: yes
+
+
+
+- name: Starting Go MicroService
+  sudo: true
+  hosts: localhost
+  tasks:
+    - name: Check if docker is installed
+      command: docker -v
+      register: DockerResult
+      ignore_errors: True
+    # - debug: var=DockerResult.stdout_lines
+
+    - name: Install docker only if docker not installed
+      script: "{{playbook_dir}}/JobRec_Go/installDocker.sh" 
+      when: DockerResult is failed
+
+    
+
+    - name: Build docker file to start Go MicroService
+
+      docker_image: >
+        name=job-rec
+        tag=job-rec
+        path=/home/karan/sga-ansible/JobRec_Go/
+        state=present
+    
+    - name: Docker - pip install
+      command: pip install docker
+      run_once: true  
+
+    - name: Run the docker Container  
+      
+      docker_container:
+        name: RunGoService
+        image: "job-rec:job-rec"
+        ports:
+          - "3050:3050"
+        # run_once: true
+        
+- name: Starting JobSearch_Flask MicroService
+  sudo: true
+  hosts: localhost
+  tasks:
+    
+    - name: Check if Python 3 is installed
+      shell: /usr/bin/python3 --version
+      register: python3_version
+      ignore_errors: yes  # If not installed
+      # tags:
+      #   - python-alt
+    - debug: var=python3_version.stdout_lines
+
+    - name: download python3 source
+      get_url: > 
+        url=https://www.python.org/ftp/python/3.3.7/Python-3.3.7.tgz
+        dest=/tmp/Python-3.3.7.tgz
+      run_once: true
+    
+    - name: uncompress python3 source
+      unarchive: >
+        src=/tmp/Python-3.3.7.tgz
+        dest=/tmp
+        creates=/tmp/Python-3.3.7
+        copy=no
+
+    - name: configure
+      command: >
+        ./configure --prefix=/usr/local/
+        chdir=/tmp/Python-3.3.7
+        creates=/tmp/Python-3.3.7/Makefile
+      run_once: true
+    
+    - name: make
+      command: >
+        make
+        chdir=/tmp/Python-3.3.7
+        creates=/tmp/Python-3.3.7/python
+      run_once: true
+      when: python3_version is failed
+
+    - name: make install
+      become: yes
+      command: >
+        make install
+        chdir=/tmp/Python-3.3.7 
+        creates=/usr/local/bin/python3
+      when: python3_version is failed
+
+    # - name: Get pip3
+    #   get_url:
+    #     url: https://bootstrap.pypa.io/3.3/get-pip.py
+    #     dest: /tmp/get-pip.py
+    #     mode: 0664
+    #     # run_once: true
+
+    # - name: Install pip3 
+    #   shell: /usr/bin/python3 /tmp/get-pip.py
+    #   become: yes
+    #   tags:
+    #     - python-alt
+    #   run_once: true 
+        
+
+
+
+    - name: Install dependencies for JobSearch_Flask MicroServices
+      command: pip3 install -r {{playbook_dir}}/JobSearch_Flask/requirements.txt
+      register: stderr
+
+
+    - name: Start the Flask server
+      # script: /home/karan/sga-ansible/JobSearch_Flask/server.py
+      shell: /usr/bin/python3 {{playbook_dir}}/JobSearch_Flask/server.py >/dev/null 2>&1 &
+      when: stderr 
+
+- name: Starting UserProfile-DB MicroService
+  sudo: true
+  hosts: localhost
+  tasks:
+
+    - name: "Install  Node"
+      pip:
+        name: node
+        state: present
+
+    - name: "Install the npm packages for Node" 
+      npm:
+        path: "{{playbook_dir}}/NodeMongo"
+
+    - name: "Run the DB service"
+      shell: node {{playbook_dir}}/NodeMongo/index.js >/dev/null 2>&1 &
+      register: dbserviceStatus
+
+    - debug: var=dbserviceStatus.stdout_lines
+
+
+
+- name: Starting ReactUI Service
+  sudo: true
+  hosts: localhost
+  tasks:
+
+    
+    - name: "Install npm packages for Node"
+      npm:
+        path: "{{playbook_dir}}/ReactUI/userinterface"
+
+    - name: "Start React UI"
+      shell: cd {{playbook_dir}}/ReactUI/userinterface && npm start >/dev/null 2>&1 &
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
