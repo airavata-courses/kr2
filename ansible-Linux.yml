@@ -47,14 +47,14 @@
       command: docker -v
       register: DockerResult
       ignore_errors: True
-    # - debug: var=DockerResult.stdout_lines
+    
 
     - name: Install docker only if docker not installed
       script: "{{playbook_dir}}/JobRec_Go/installDocker.sh" 
       when: DockerResult is failed
 
     - name: Docker - pip install
-      command: pip install docker
+      command: pip2 install docker
       run_once: true   
 
     
@@ -67,10 +67,7 @@
         path={{playbook_dir}}/JobRec_Go/
         state=present
     
-    # - name: Docker - pip install
-    #   command: pip install docker
-    #   run_once: true  
-
+      
     - name: Run the docker Container  
       
       docker_container:
@@ -89,8 +86,7 @@
       shell: /usr/bin/python3 --version
       register: python3_version
       ignore_errors: yes  # If not installed
-      # tags:
-      #   - python-alt
+      
     - debug: var=python3_version.stdout_lines
 
     - name: download python3 source
@@ -129,22 +125,7 @@
         creates=/usr/local/bin/python3
       when: python3_version is failed
 
-    # - name: Get pip3
-    #   get_url:
-    #     url: https://bootstrap.pypa.io/3.3/get-pip.py
-    #     dest: /tmp/get-pip.py
-    #     mode: 0664
-    #     # run_once: true
-
-    # - name: Install pip3 
-    #   shell: /usr/bin/python3 /tmp/get-pip.py
-    #   become: yes
-    #   tags:
-    #     - python-alt
-    #   run_once: true 
         
-
-
 
     - name: Install dependencies for JobSearch_Flask MicroServices
       command: pip3 install -r {{playbook_dir}}/JobSearch_Flask/requirements.txt
@@ -152,7 +133,6 @@
 
 
     - name: Start the Flask server
-      # script: /home/karan/sga-ansible/JobSearch_Flask/server.py
       shell: /usr/bin/python3 {{playbook_dir}}/JobSearch_Flask/server.py >/dev/null 2>&1 &
       when: stderr 
 
