@@ -53,6 +53,10 @@
       script: "{{playbook_dir}}/JobRec_Go/installDocker.sh" 
       when: DockerResult is failed
 
+    - name: Docker - pip install
+      command: pip install docker
+      run_once: true   
+
     
 
     - name: Build docker file to start Go MicroService
@@ -60,12 +64,12 @@
       docker_image: >
         name=job-rec
         tag=job-rec
-        path=/home/karan/sga-ansible/JobRec_Go/
+        path={{playbook_dir}}/JobRec_Go/
         state=present
     
-    - name: Docker - pip install
-      command: pip install docker
-      run_once: true  
+    # - name: Docker - pip install
+    #   command: pip install docker
+    #   run_once: true  
 
     - name: Run the docker Container  
       
