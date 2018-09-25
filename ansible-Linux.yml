@@ -93,7 +93,8 @@
       get_url: > 
         url=https://www.python.org/ftp/python/3.3.7/Python-3.3.7.tgz
         dest=/tmp/Python-3.3.7.tgz
-      run_once: true
+      when: python3_version is failed
+      # run_once: true
     
     - name: uncompress python3 source
       unarchive: >
@@ -101,12 +102,14 @@
         dest=/tmp
         creates=/tmp/Python-3.3.7
         copy=no
+      when: python3_version is failed
 
     - name: configure
       command: >
         ./configure --prefix=/usr/local/
         chdir=/tmp/Python-3.3.7
         creates=/tmp/Python-3.3.7/Makefile
+      when: python3_version is failed
       run_once: true
     
     - name: make
@@ -125,6 +128,11 @@
         creates=/usr/local/bin/python3
       when: python3_version is failed
 
+    # - name: Install Python 3
+    #   command: sudo apt-get update
+    #   command: sudo apt-get install python3.6
+    #   when: python3_version 
+
         
 
     - name: Install dependencies for JobSearch_Flask MicroServices
@@ -141,16 +149,16 @@
   hosts: localhost
   tasks:
 
-    - name: "Install  Node"
-      pip:
-        name: node
-        state: present
-
     - name: "Get Nodejs"
-      shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+      shell: > 
+        curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+        warn=False
 
     - name: "Install Nodejs"  
-      shell: sudo apt-get install -y nodejs    
+      shell: > 
+        apt-get install -y nodejs
+        warn=False    
+      become: yes
 
     - name: "Install the npm packages for Node" 
       npm:
@@ -170,7 +178,8 @@
   tasks:
 
     - name: "Install React tools"
-      shell: sudo npm install -g create-react-app 
+      shell: npm install -g create-react-app
+      become: yes 
     
     - name: "Install npm packages for Node"
       npm:
