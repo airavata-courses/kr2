@@ -146,6 +146,12 @@
         name: node
         state: present
 
+    - name: "Get Nodejs"
+      shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+
+    - name: "Install Nodejs"  
+      shell: sudo apt-get install -y nodejs    
+
     - name: "Install the npm packages for Node" 
       npm:
         path: "{{playbook_dir}}/NodeMongo"
@@ -163,6 +169,8 @@
   hosts: localhost
   tasks:
 
+    - name: "Install React tools"
+      shell: sudo npm install -g create-react-app 
     
     - name: "Install npm packages for Node"
       npm:
