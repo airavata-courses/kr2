@@ -7,6 +7,8 @@ pipeline {
         steps{
         /* This builds the actual image; synonymous to
          * docker build on the command line */
+         sh 'sudo usermod -aG docker $USER'
+         sh 'newgrp docker'
 
     dockerfile {
         filename 'Dockerfile'
