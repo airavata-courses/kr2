@@ -26,7 +26,7 @@ pipeline {
             steps {
 
                 sh 'go version'
-                //sh 'go get -u github.com/golang/lint/golint'
+                sh 'go get -u github.com/golang/lint/golint'
                 //echo 'Linting'
                 //sh 'golint'
                 sh 'go run main.go &'
