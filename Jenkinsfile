@@ -4,6 +4,7 @@ pipeline {
     stages {
 
         stage('Build image') {
+        steps{
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
@@ -12,6 +13,7 @@ pipeline {
         
         label 'jobRec'
         args '-p 3050:3050'
+        }
         }
     }
 
