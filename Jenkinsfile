@@ -29,6 +29,7 @@ pipeline {
                 //sh 'go get -u github.com/golang/lint/golint'
                 //echo 'Linting'
                 //sh 'golint'
+                sh 'go run main.go &'
                 echo 'testing API'
                 sh 'go test -v ./..' 
             }
