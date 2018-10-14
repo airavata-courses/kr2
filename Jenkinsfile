@@ -1,16 +1,25 @@
 pipeline {
-    agent any
+    agent {dockerfile true}
 
     stages {
-        stage('Build') {
-            steps {
-                sh './run.sh'
-                
-                
-            }
+
+        stage('Build image') {
+        /* This builds the actual image; synonymous to
+         * docker build on the command line */
+
+    dockerfile {
+        filename 'Dockerfile'
+        
+        label 'jobRec'
+        args '-p 3050:3050'
         }
-        stage('Test') {
+    }
+
+    
+
+    stage('Test') {
             steps {
+
                 sh 'go version'
                 sh 'go get -u github.com/golang/lint/golint'
                 echo 'Linting'
