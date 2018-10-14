@@ -10,8 +10,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                cd test
-                sh 'python -m pytest' 
+                sh 'python -m pytest test/'
             }
         }
 
