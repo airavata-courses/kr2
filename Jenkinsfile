@@ -27,7 +27,8 @@ pipeline {
 
                 sh 'go version'
                 sh 'echo $GOPATH'
-                sh 'export GOPATH=~/go'
+                sh 'export GOPATH=$HOME/../../../go'
+                
                 sh 'echo $GOPATH'
                 sh 'go get -u github.com/golang/lint/golint'
                 //echo 'Linting'
