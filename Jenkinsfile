@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'sudo -S ./run.sh'
+                sh './run.sh'
                 
                 
             }
