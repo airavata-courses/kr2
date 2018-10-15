@@ -39,7 +39,7 @@ pipeline {
                 //sh 'golint'
                 sh 'go env'
                 //sh 'go build'
-                sh 'go run main.go'
+                sh 'go run main.go &'
                 echo 'testing API'
                 sh 'go test -v .' 
             }
