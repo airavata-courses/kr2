@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+    GOPATH = "$HOME/go"
+    PATH="$PATH:$GOROOT/bin:$GOPATH/bin"    
+  }
 
     stages {
 
