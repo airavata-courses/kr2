@@ -41,7 +41,7 @@ pipeline {
                 //sh 'go build'
                 sh 'go run main.go &'
                 echo 'testing API'
-                sh 'go test -v ./..' 
+                sh 'go test -v .' 
             }
         }
 
