@@ -27,12 +27,14 @@ pipeline {
 
                 sh 'go version'
                 sh 'echo $GOPATH'
-                sh 'export GOPATH=$HOME/go'
+                //sh 'export GOPATH=$HOME/go'
                 
-                sh 'echo $GOPATH'
-                sh 'go get -u github.com/golang/lint/golint'
+                //sh 'echo $GOPATH'
+                //sh 'go get -u github.com/golang/lint/golint'
                 //echo 'Linting'
                 //sh 'golint'
+                sh 'go env'
+                sh 'go build'
                 sh 'go run main.go &'
                 echo 'testing API'
                 sh 'go test -v ./..' 
