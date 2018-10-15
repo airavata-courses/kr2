@@ -34,9 +34,9 @@ pipeline {
                 //sh 'export GOPATH=$HOME/go'
                 
                 //sh 'echo $GOPATH'
-                sh 'go get -u github.com/golang/lint/golint'
-                echo 'Linting'
-                sh 'golint'
+                //sh 'go get -u github.com/golang/lint/golint'
+                //echo 'Linting'
+                //sh 'golint'
                 sh 'go env'
                 //sh 'go build'
                 sh 'go run main.go &'
