@@ -4,7 +4,7 @@
   "description": "Fall 2018 Project Team",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --exit|| true ",
+    "test": "mocha --exit",
     "start": "node index.js"
   },
   "repository": {
