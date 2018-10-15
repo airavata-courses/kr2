@@ -33,6 +33,10 @@ describe("Status and content of User Registration", function() {
 });
 
 describe("Status and content of Fetching user with specific email", () => {
+   after(function (done) {
+        server.close();
+        done();
+    });
   it("it should get the user with given email", done => {
     var email = "john@gmail.com";
 
