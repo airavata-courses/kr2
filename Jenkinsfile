@@ -5,12 +5,12 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'pip install -r requirements.txt'
-                sh 'python server.py &'
+                sh 'python3 server.py &'
             }
         }
         stage('Test') {
             steps {
-                sh 'python -m pytest test/'
+                sh 'python3 -m pytest test/'
             }
         }
 
