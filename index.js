@@ -26,6 +26,10 @@ app.use("/api/UserProfiles", UserProfiles);
 
 const port = process.env.PORT || 4000;
 
-app.listen(port, () => console.log(`Server started on port ${port}`));
+var server = app.listen(port, () => console.log(`Server started on port ${port}`));
 
-module.exports = app;
+module.exports = {
+      app: app,
+      server: server
+};
+  
