@@ -12,7 +12,9 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'npm test'
+
                 sh 'mongo ds151612.mlab.com:51612/userprofile -u admin -p root99; db.userprofiles.remove({email:"john@gmail.com"})'
+
                 
             }
         }
