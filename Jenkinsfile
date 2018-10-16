@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'kill -9 $(lsof -t -i:5000)'
+                //sh 'kill -9 $(lsof -t -i:5000)'
                 sh 'pip3 install -r requirements.txt'
                 
             }
