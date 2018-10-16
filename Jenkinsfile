@@ -13,7 +13,7 @@ pipeline {
             steps {
                 //sh 'python3 server.py &'
                 sh 'python3 -m pytest test/'
-                sh 'kill -9 $(lsof -t -i:5000)'
+                //sh 'kill -9 $(lsof -t -i:5000)'
             }
         }
         stage('Deploy') {
