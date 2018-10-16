@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 
 const UserProfiles = require("./routes/api/UserProfiles");
 
-const app = express();
+var app = express();
 
 //body parser middleware
 app.use(bodyParser.json());
@@ -26,10 +26,11 @@ app.use("/api/UserProfiles", UserProfiles);
 
 const port = process.env.PORT || 4000;
 
-var server = app.listen(port, () => console.log(`Server started on port ${port}`));
+var server = app.listen(port, () =>
+  console.log(`Server started on port ${port}`)
+);
 
 module.exports = {
-      app: app,
-      server: server
+  app: app,
+  server: server
 };
-  
