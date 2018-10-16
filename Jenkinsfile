@@ -13,6 +13,10 @@ pipeline {
                 sh 'python3 -m pytest test/'
             }
         }
+        stage('Deploy') {
+            steps {
+                sh 'python3 server.py'
+            }
 
       }
     }
