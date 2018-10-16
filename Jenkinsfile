@@ -17,6 +17,7 @@ pipeline {
             steps {
                 sh 'python3 server.py'
             }
+        }
 
       }
     }
