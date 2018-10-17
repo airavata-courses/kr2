@@ -12,6 +12,11 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'npm test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'node index.js'
 
                 
             }
