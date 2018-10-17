@@ -53,3 +53,19 @@ describe("Status and content of Fetching user with specific email", () => {
       });
   });
 });
+
+describe("Remove user with specific email", () => {
+  afterEach(function() {
+    server.close();
+  });
+
+  it("it should remove the user with given email", done => {
+    chai
+      .request(server)
+      .delete("/api/userprofiles/deleteByMail/" + "john@gmail.com")
+      .end((err, res) => {
+        res.should.have.status(200);
+        done();
+      });
+  });
+});

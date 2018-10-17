@@ -19,6 +19,21 @@ router.get("/fetchByMail/:emailId", (req, res) => {
   );
 });
 
+//@route  DELETE api/users
+router.delete("/deleteByMail/:emailId", (req, res) => {
+  var emailId = req.params.emailId;
+
+  UserProfile.deleteOne({ email: emailId }, (err, doc) => {
+    if (doc) {
+      res.status(200).end();
+      return;
+    } else {
+      res.status(400).end();
+      return;
+    }
+  });
+});
+
 //@route  POST api/users
 router.post("/", (req, res) => {
   UserProfile.findOne({ email: req.body.email }, (err, doc) => {
