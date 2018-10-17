@@ -6,7 +6,7 @@ pipeline {
             steps {
                 dir('userinterface'){
                    sh 'npm install'
-                   sh 'npm start >/dev/null 2>&1 &'
+                   sh 'npm start &'
                 
                 }
                 
