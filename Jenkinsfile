@@ -16,9 +16,9 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'node index.js'
+                sh 'node index.js &'
 
-                
+                 
             }
         }
 
