@@ -16,12 +16,11 @@ pipeline {
                 //sh 'kill -9 $(lsof -t -i:5000)'
             }
         }
-        stage('Deploy') {
-            steps {
-                
-                sh 'python3 server.py &'
-            }
+       }
+    post {
+        success{
+             build 'Deploy to prod flask'            
         }
-
-      }
+        
+    }
     }
