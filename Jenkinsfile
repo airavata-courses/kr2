@@ -1,9 +1,10 @@
 pipeline {
     agent any
-    //environment {
-    //GOPATH = "/var/lib/jenkins/go"
-    //PATH="$PATH:$GOROOT/bin:$GOPATH/bin"    
-  //}
+    environment {
+    GOROOT="/var/lib/jenkins/go/go"    
+    GOPATH = "/var/lib/jenkins/go-path"
+    PATH="$PATH:$GOROOT/bin:$GOPATH/bin"    
+  }
 
     stages {
 
