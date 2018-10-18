@@ -1,9 +1,9 @@
 pipeline {
     agent any
-    environment {
-    GOPATH = "/var/lib/jenkins/go"
+    //environment {
+    //GOPATH = "/var/lib/jenkins/go"
     //PATH="$PATH:$GOROOT/bin:$GOPATH/bin"    
-  }
+  //}
 
     stages {
 
@@ -39,7 +39,7 @@ pipeline {
                 //sh 'go get -u github.com/golang/lint/golint'
                 //echo 'Linting'
                 //sh 'golint'
-                sh 'go env'
+                //sh 'go env'
                 //sh 'go build'
                 sh 'go run main.go &'
                 echo 'testing API'
