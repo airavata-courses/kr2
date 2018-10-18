@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-    GOPATH = "$HOME/go"
+    GOPATH = "/var/lib/jenkins/go"
     //PATH="$PATH:$GOROOT/bin:$GOPATH/bin"    
   }
 
@@ -19,6 +19,8 @@ pipeline {
         
         label 'jobRec'
         args '-p 3050:3050 -v /var/run/docker.sock:/var/run/docker.sock'
+        
+        echo 'build done'
         
         }
         }
