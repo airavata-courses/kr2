@@ -37,7 +37,7 @@ pipeline {
                 sh 'wget https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz'
                 sh 'sudo tar -xvf go1.8.linux-amd64.tar.gz'
                 sh 'sudo mkdir -p /var/lib/jenkins/go'
-                sh 'sudo mv go /var/lib/jenkins/go'
+                sh 'sudo mv go /var/lib/jenkins/'
                 sh 'sudo mkdir -p /var/lib/jenkins/go-path'
 
                 sh 'sudo echo -n \'export GOROOT="/var/lib/jenkins/go"\' >> ~/.bashrc'
