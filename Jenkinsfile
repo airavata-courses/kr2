@@ -58,6 +58,8 @@ pipeline {
                 //sh 'golint'
                 //sh 'go env'
                 //sh 'go build'
+                sh 'go get github.com/gin-contrib/cors'
+                sh 'go get github.com/gin-gonic/gin'
                 sh 'go run main.go &'
                 echo 'testing API'
                 sh 'go test -v .' 
