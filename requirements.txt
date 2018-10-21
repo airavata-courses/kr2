@@ -5,3 +5,4 @@ fastavro
 flask-cors
 tavern
 pytest==3.8.0
+kafka-python
