@@ -44,7 +44,7 @@ pipeline {
                 sh 'sudo echo -n \'export GOPATH="/var/lib/jenkins/go-path"\' >> ~/.bashrc' 
                 sh 'sudo echo -n \'export PATH="$PATH:$GOROOT/bin:$GOPATH/bin"\' >> ~/.bashrc'
 
-                sudo source ~/.bashrc
+                sh 'sudo source ~/.bashrc'
 
                 echo "go version"
 
