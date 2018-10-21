@@ -40,9 +40,9 @@ pipeline {
                 sh 'sudo mv go /var/lib/jenkins/go'
                 sh 'sudo mkdir -p /var/lib/jenkins/go-path'
 
-                sudo echo -n 'export GOROOT=/var/lib/jenkins/go' >> ~/.bashrc
-                sudo echo -n 'export GOPATH=/var/lib/jenkins/go-path' >> ~/.bashrc 
-                sudo echo -n 'export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' >> ~/.bashrc
+                sudo echo -n 'export GOROOT="/var/lib/jenkins/go"' >> ~/.bashrc
+                sudo echo -n 'export GOPATH="/var/lib/jenkins/go-path"' >> ~/.bashrc 
+                sudo echo -n 'export PATH="$PATH:$GOROOT/bin:$GOPATH/bin"' >> ~/.bashrc
 
                 sudo source ~/.bashrc
 
