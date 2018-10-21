@@ -15,13 +15,11 @@ pipeline {
                 sh 'npm test'
             }
         }
-        //stage('Deploy') {
-            //steps {
-                //sh 'node index.js &'
-
-                 
-            //}
-        //}
+       }
+    post {
+        success{
+             build 'Deploy_to_prod_node'            
+        }
 
       }
     }
