@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-    GOROOT="/var/lib/jenkins/go/go"    
+    GOROOT="/var/lib/jenkins/go"    
     GOPATH = "/var/lib/jenkins/go-path"
     PATH="$PATH:$GOROOT/bin:$GOPATH/bin"    
   }
@@ -31,6 +31,22 @@ pipeline {
 
     stage('Test') {
             steps {
+                sh 'sudo apt-get update'
+                sh 'sudo apt-get -y upgrade'
+                sh 'cd /opt/'
+                sh 'wget https://storage.googleapis.com/golang/go1.8.linux-amd64.tar.gz'
+                sh 'sudo tar -xvf go1.8.linux-amd64.tar.gz'
+                sh 'sudo mkdir -p /var/lib/jenkins/go'
+                sh 'sudo mv go /var/lib/jenkins/go'
+                sh 'sudo mkdir -p /var/lib/jenkins/go-path'
+
+                sudo echo -n 'export GOROOT=/var/lib/jenkins/go
+                export GOPATH=/var/lib/jenkins/go-path
+                export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' >> ~/.bashrc
+
+                sudo source ~/.bashrc
+
+                echo "go version"
 
                 sh 'go version'
                 sh 'echo $GOPATH'
