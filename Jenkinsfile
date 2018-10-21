@@ -42,6 +42,7 @@ pipeline {
                 echo "Take action  Go DIR is not Empty"
                 else
                 sudo mv go /var/lib/jenkins/
+                fi
                 '''
                 //sh 'sudo mv go /var/lib/jenkins/'
                 sh 'sudo mkdir -p /var/lib/jenkins/go-path'
