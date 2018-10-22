@@ -1,28 +1,13 @@
 import React, { Component } from "react";
 
 import axios from "axios";
-import "./UserDetails.css";
 
-const searchlink1 = {
-  paddingLeft: "650px",
-  fontSize: "15px"
-};
-const searchlink2 = {
-  paddingLeft: "80px",
-  fontSize: "15px"
-};
-const searchlink3 = {
-  paddingLeft: "40px",
-  fontSize: "15px"
-};
-
-class UserDetails extends Component {
+class JobInterest extends Component {
   constructor() {
     super();
     this.state = {
       email: "",
-      userName: undefined,
-      location: "",
+      jobInterest: [],
       isSubmitted: false
     };
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -40,22 +25,23 @@ class UserDetails extends Component {
     event.preventDefault();
 
     axios
-      .get("/api/UserProfiles/fetchByMail/" + this.state.email)
-      .then(res => {
-        if (res.data) {
-          console.log(res.data.email);
-          this.setState({ userName: res.data.name });
-          this.setState({ location: res.data.location });
-          this.setState({ email: res.data.email });
-          this.handleDisplayChange(true);
-        } else {
-          this.setState({ isSubmitted: false });
-          this.setState({ userName: "" });
-        }
-      })
+      .get("http://localhost:8080/jobInterest/" + this.state.email)
+      .then(
+        function(res) {
+          if (res.data) {
+            console.log(res.data);
+            this.handleDisplayChange(true);
+            var newArr = this.state.jobInterest.concat(res.data);
+            this.setState({ jobInterest: newArr });
+            console.log("Array: A " + this.state.jobInterest);
+          } else {
+            this.setState({ isSubmitted: false });
+          }
+        }.bind(this)
+      )
       .catch(err => {
         console.log(err);
-        alert("Please enter registered email id");
+        alert("No Records Found!!");
         this.handleDisplayChange(false);
       });
 
@@ -64,18 +50,18 @@ class UserDetails extends Component {
 
   render() {
     const { isSubmitted } = this.state;
+
+    var { jobInterest } = this.state;
+
     return (
       <div>
         {!isSubmitted ? (
           <div className="container">
-            <a href="/jobinterest" style={searchlink1}>
-              JobInterest
-            </a>
-            <a href="/profile" style={searchlink2}>
+            <a className="navigationlink" href="/profile">
               Registration
             </a>
-            <a href="/" style={searchlink3}>
-              Search
+            <a className="navigationlink1" href="/">
+              Search{" "}
             </a>
             <form onSubmit={this.handleSubmit}>
               <div className="form-group row">
@@ -99,7 +85,7 @@ class UserDetails extends Component {
                   >
                     Go
                   </button>
-                  <p> If you are a new user, please register first</p>
+                  <p> Enter registered email to retrieve job interests</p>
                 </div>
                 <div className="col-sm-5">
                   {this.state.userName === "" &&
@@ -116,9 +102,12 @@ class UserDetails extends Component {
               </a>
               {this.state.userName !== "" && (
                 <div className="card">
-                  <h1>{this.state.userName}</h1>
                   <p>{this.state.email}</p>
-                  <p>{this.state.location}</p>
+                  <ul>
+                    {jobInterest.map(function(name, index) {
+                      return <li key={index}>{name}</li>;
+                    })}
+                  </ul>
                 </div>
               )}
             </div>
@@ -129,4 +118,4 @@ class UserDetails extends Component {
   }
 }
 
-export default UserDetails;
+export default JobInterest;
