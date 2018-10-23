@@ -5,7 +5,9 @@ pipeline {
         stage('Install Dependecies') {
             steps {
                 //sh 'kill -9 $(lsof -t -i:5000)'
-                sh '/home/ubuntu/test_java.sh'
+                sh 'rm -rf test_java.sh'
+                sh 'cp /home/ubuntu/test_java.sh .'
+                sh './test_java.sh'
                 sh 'sudo apt-get install maven -y'
                 sh 'mvn -version'
                 
