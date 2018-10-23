@@ -42,7 +42,10 @@ class UserDetails extends Component {
     axios
       .get(
         "http://149.165.170.57:4000/api/UserProfiles/fetchByMail/" +
-          this.state.email
+          this.state.email,
+        {
+          headers: { crossDomain: true }
+        }
       )
       .then(res => {
         if (res.data) {

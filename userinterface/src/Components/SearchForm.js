@@ -40,7 +40,8 @@ class SearchForm extends Component {
     var jobTypeValue;
 
     if (
-      this.refs.email.value=== "" || this.refs.desc.value === "" ||
+      this.refs.email.value === "" ||
+      this.refs.desc.value === "" ||
       (document.getElementById("radio1").checked === false &&
         document.getElementById("radio2").checked === false)
     ) {
@@ -58,7 +59,7 @@ class SearchForm extends Component {
             city: this.refs.city.value,
             title: this.refs.title.value,
             jobType: jobTypeValue,
-            email:this.refs.email.value,
+            email: this.refs.email.value
           }
         },
         function() {
@@ -67,8 +68,8 @@ class SearchForm extends Component {
           bodyFormData.set("title", this.state.job["title"]);
           bodyFormData.set("jobType", this.state.job["jobType"]);
           bodyFormData.set("email", this.state.job["email"]);
-          console.log(this.state.job);
-          console.log(bodyFormData.values());
+          // console.log(this.state.job);
+          // console.log(bodyFormData.values());
           axios({
             method: "post",
             url: "http://149.165.170.151:5000/job",
@@ -136,7 +137,12 @@ class SearchForm extends Component {
           <div className="form-group row">
             <label className="col-sm-2">Email</label>
             <div className="col-sm-4 float-sm-left">
-              <input type="text" required className="form-control" ref="email" />
+              <input
+                type="text"
+                required
+                className="form-control"
+                ref="email"
+              />
             </div>
           </div>
           <div className="form-group row">

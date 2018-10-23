@@ -42,7 +42,9 @@ class UserProfile extends Component {
     user["location"] = this.state.location;
 
     axios
-      .post("http://149.165.170.57:4000/api/UserProfiles", user)
+      .post("http://149.165.170.57:4000/api/UserProfiles", user, {
+        headers: { crossDomain: true }
+      })
       .then(function(res) {
         console.log(res);
         alert("User Registration Succesful!");
@@ -58,8 +60,8 @@ class UserProfile extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div class="col-md-6" />
-          <div class="col-md-4 text-right">
+          <div className="col-md-6" />
+          <div className="col-md-4 text-right">
             <a className=".navbar-right" href="/">
               Search
             </a>
