@@ -9,13 +9,13 @@ pipeline {
                 sh 'pip3 install -r requirements.txt'
                 sh '''
                 sudo kill -9 $(sudo lsof -t -i:2181)
-                sudo /opt/kafka/bin/zookeeper-server-start.sh /opt/kafka/config/zookeeper.properties
+                sudo /opt/kafka/bin/zookeeper-server-start.sh /opt/kafka/config/zookeeper.properties &
                 pid=`ps ax | grep -i \'kafka.Kafka\' | grep -v grep | awk \'{print $1}\'`
                 if [ -n "$pid" ]
                     then
                    sudo kill -9 $pid
                 fi
-                sudo /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties
+                sudo /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties &
                 '''
                 
                 
