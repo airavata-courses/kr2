@@ -33,7 +33,7 @@ def test_parameters():
     test_app.testing=True
     headers_content_form_data = {'Content-Type': 'multipart/form-data'}
     response = test_client.post('/job',headers=headers_content_form_data,
-        data={'desc': 'java','jobType': 'AnythingButTrueOrFalse'})
+        data={'desc': 'java','jobType': 'AnythingButTrueOrFalse', 'email': 'kr2@kr2.com'})
 
     resText = json.loads(response.get_data(as_text=True))
 
