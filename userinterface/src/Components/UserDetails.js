@@ -41,7 +41,8 @@ class UserDetails extends Component {
 
     axios
       .get(
-        "http://localhost:4000/api/UserProfiles/fetchByMail/" + this.state.email
+        "http://149.165.170.57:4000/api/UserProfiles/fetchByMail/" +
+          this.state.email
       )
       .then(res => {
         if (res.data) {

@@ -25,7 +25,7 @@ class JobInterest extends Component {
     event.preventDefault();
 
     axios
-      .get("http://localhost:9090/jobInterest/" + this.state.email)
+      .get("http://149.165.170.240:9090/jobInterest/" + this.state.email)
       .then(
         function(res) {
           if (res.data) {
