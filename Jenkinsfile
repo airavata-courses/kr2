@@ -11,7 +11,7 @@ pipeline {
                 pid=`ps ax | grep -i \'kafka.Kafka\' | grep -v grep | awk \'{print $1}\'`
                 if [ -n "$pid" ]
                     then
-                    kill -9 $pid
+                   sudo kill -9 $pid
                 fi
                 sudo /opt/kafka/bin/kafka-server-start.sh /opt/kafka/config/server.properties
                 '''
