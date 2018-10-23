@@ -25,11 +25,12 @@ class JobInterest extends Component {
     event.preventDefault();
 
     axios
-      .get("http://localhost:8080/jobInterest/" + this.state.email)
+      .get("http://localhost:9090/jobInterest/" + this.state.email)
       .then(
         function(res) {
           if (res.data) {
-            console.log(res.data);
+            if (res.data.length === 0)
+              alert("No Records of Job Interest Found!!");
             this.handleDisplayChange(true);
             var newArr = this.state.jobInterest.concat(res.data);
             this.setState({ jobInterest: newArr });

@@ -40,7 +40,9 @@ class UserDetails extends Component {
     event.preventDefault();
 
     axios
-      .get("/api/UserProfiles/fetchByMail/" + this.state.email)
+      .get(
+        "http://localhost:4000/api/UserProfiles/fetchByMail/" + this.state.email
+      )
       .then(res => {
         if (res.data) {
           console.log(res.data.email);

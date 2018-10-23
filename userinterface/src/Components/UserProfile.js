@@ -42,7 +42,7 @@ class UserProfile extends Component {
     user["location"] = this.state.location;
 
     axios
-      .post("/api/UserProfiles", user)
+      .post("http://localhost:4000/api/UserProfiles", user)
       .then(function(res) {
         console.log(res);
         alert("User Registration Succesful!");
