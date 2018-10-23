@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import org.json.simple.JSONObject;
 
@@ -18,29 +21,21 @@ import org.json.simple.JSONObject;
 @RequestMapping("/jobInterest")
 public class JobInterestMapper {
 	
-	JSONObject jobJOSNObject = JobInterestApplication.jobInterest;
-	ArrayList<Object> userInterestList;
+
+	Map<String,ArrayList<String>> jobInetrestMap = JobInterestApplication.jobInterestMap;
+
 	
 	
 	@GetMapping("/{email}")
 	public ArrayList getJobInterest(@PathVariable("email") String email){
-		
-		userInterestList = new ArrayList();
-		String[] a = {"SE","CEO"};
-		jobJOSNObject.put("rdasego@iu.edu",a);
-		jobJOSNObject.put("karan@iu.edu", "PE");
-		jobJOSNObject.put("raghu@iu.edu", "DS");
 
-
-		
-	    for (Object key : jobJOSNObject.keySet()) {
-
-	        String keyStr = (String)key;
-	       if(keyStr.equals(email)) 
-	        	userInterestList.add((jobJOSNObject.get(keyStr)));
-	        	
-		
-	}	
-	    return userInterestList;
+		for (String key : jobInetrestMap.keySet()) {
+			System.out.println("printing key"+key);
+			System.out.println("printing email"+ email);
+				if(key.equals(email))
+					return jobInetrestMap.get(key);
+		}
+	
+	    return new ArrayList<String>();
 }
 }
