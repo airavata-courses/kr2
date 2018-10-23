@@ -25,7 +25,7 @@ Steps to run the UserProfile micro service
 
     $ npm install
 
- 4. Execute the application
+ 4. Execute the application.
     $ node index.js
     
 
