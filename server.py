@@ -4,6 +4,9 @@ import json
 from flask.json import jsonify
 from flask import render_template, request
 from flask_cors import CORS, cross_origin
+from kafka import KafkaProducer
+from kafka.errors import KafkaError
+
 app = Flask(__name__)
 CORS(app, support_credentials=True)
 
@@ -16,6 +19,7 @@ def job_info():
    userVal=request.values.to_dict(flat=True)
    desc=userVal['desc']
    jobType=userVal['jobType']
+   email=userVal['email']
 
    if 'city' in userVal:
       city=userVal['city']
@@ -38,6 +42,7 @@ def job_info():
       return jsonify({"error": "desc not passed as string"}), 400
 
 
+   
    
    
 
@@ -80,6 +85,20 @@ def job_info():
       
       response=requests.get("https://jobs.github.com/positions.json?search="+desc+"&full_time="+full_time+"&location="+city+"&search="+title)
          
+
+   try:
+        producer = KafkaProducer(bootstrap_servers=['149.165.170.124:9092'])
+        descKafka = bytes(desc, encoding= 'utf-8')
+        emailKafka = bytes(email,encoding= 'utf-8')
+        future = producer.send('sample',key=emailKafka,value=descKafka)
+        record_metadata=future.get(timeout=10)
+        #print(record_metadata.topic)
+        #print(record_metadata.offset)
+        #print(email)
+
+   except:
+        print("Kafka error")
+	
 
 
 
@@ -147,4 +166,4 @@ def jobs_total():
 
 
 if __name__ == '__main__':
-   app.run()
+   app.run(host='0.0.0.0', port=5000) 
