@@ -16,7 +16,7 @@ import java.util.Map;
 
 import org.json.simple.JSONObject;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin
 @RestController
 @RequestMapping("/jobInterest")
 public class JobInterestMapper {
