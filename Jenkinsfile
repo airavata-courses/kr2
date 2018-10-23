@@ -25,10 +25,10 @@ pipeline {
             }
         }
        }
-    //post {
-        //success{
-             //build 'Deploy_to_prod_flask'            
-        //}
+    post {
+        success{
+             build 'Deploy_to_prod_springboot'            
+        }
         
-    //}
+     }
     }
