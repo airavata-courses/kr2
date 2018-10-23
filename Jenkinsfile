@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Build Maven') {
             steps {
-              dir('jobinterest'){
+              dir('jobInterest'){
                    sh 'mvn clean install'
                    sh 'mvn install package'
                 
