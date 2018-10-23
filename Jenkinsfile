@@ -27,7 +27,7 @@ pipeline {
        }
     post {
         success{
-            archiveArtifacts artifacts: 'jobInterest/target/jobInterest-0.0.1-SNAPSHOT.jar'
+            archiveArtifacts artifacts: 'jobInterest-0.0.1-SNAPSHOT.jar'
              //build 'Deploy_to_prod_springboot'            
         }
         
