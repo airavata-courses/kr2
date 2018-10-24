@@ -26,17 +26,16 @@ class App extends Component {
       .then(
         function(res) {
           if (res.data) {
-            var nodeip = res.data["node"].split("b");
             this.setState({
-              NodeServer: nodeip[1].toString().replace(/^'(.*)'$/, "$1")
+              NodeServer: res.data["node"]
             });
-            var flaskip = res.data["flask"].split("b");
+
             this.setState({
-              FlaskServer: flaskip[1].toString().replace(/^'(.*)'$/, "$1")
+              FlaskServer: res.data["flask"]
             });
-            var javaip = res.data["java"].split("b");
+
             this.setState({
-              JavaServer: javaip[1].toString().replace(/^'(.*)'$/, "$1")
+              JavaServer: res.data["java"]
             });
 
             console.log("printing server node " + this.state.NodeServer);
