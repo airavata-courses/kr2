@@ -30,8 +30,7 @@ public class JobInterestMapper {
 	public ArrayList getJobInterest(@PathVariable("email") String email){
 
 		for (String key : jobInetrestMap.keySet()) {
-			System.out.println("printing key"+key);
-			System.out.println("printing email"+ email);
+
 				if(key.equals(email))
 					return jobInetrestMap.get(key);
 		}
