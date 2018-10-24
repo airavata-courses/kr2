@@ -27,12 +27,11 @@ class SearchForm extends Component {
 
       results: []
     };
-    // this.handleDescChange = this.handleDescChange.bind(this);
   }
 
   handleSearchSubmit(e) {
     e.preventDefault();
-    //console.log(this.state.desc);
+
     var bodyFormData = new FormData();
     var jobTypeValue;
 
@@ -65,11 +64,10 @@ class SearchForm extends Component {
           bodyFormData.set("title", this.state.job["title"]);
           bodyFormData.set("jobType", this.state.job["jobType"]);
           bodyFormData.set("email", this.state.job["email"]);
-          // console.log(this.state.job);
-          // console.log(bodyFormData.values());
+
           axios({
             method: "post",
-            url: "http://149.165.170.151:5000/job",
+            url: "http://" + this.props.server + "/job",
             data: bodyFormData,
             config: {
               headers: {
@@ -86,9 +84,7 @@ class SearchForm extends Component {
                     : response.data["result"]
               };
 
-              // console.log(response.data['result']);
               this.setState(data);
-              // console.log(this.state.results);
             })
             .catch(function(err) {
               //handle error

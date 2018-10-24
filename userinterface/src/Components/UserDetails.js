@@ -29,6 +29,9 @@ class UserDetails extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDisplayChange = this.handleDisplayChange.bind(this);
   }
+  // componentDidMount() {
+  //   this.setState({ server: this.props.server });
+  // }
   handleEmailChange(e) {
     this.setState({ email: e.target.value });
   }
@@ -41,7 +44,9 @@ class UserDetails extends Component {
 
     axios
       .get(
-        "http://149.165.170.57:4000/api/UserProfiles/fetchByMail/" +
+        "http://" +
+          this.props.server +
+          "/api/UserProfiles/fetchByMail/" +
           this.state.email,
         {
           headers: { crossDomain: true }

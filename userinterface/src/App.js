@@ -5,9 +5,52 @@ import SearchForm from "./Components/SearchForm.js";
 import SearchResults from "./Components/SearchResults.js";
 import JobInterest from "./Components/JobInterest.js";
 import { BrowserRouter, Route } from "react-router-dom";
+import axios from "axios";
 import "./App.css";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      NodeServer: "",
+      FlaskServer: "",
+      JavaServer: ""
+    };
+  }
+  componentDidMount() {
+    axios
+      .get("http://localhost:5000/service_query", {
+        headers: { crossDomain: true }
+      })
+      .then(
+        function(res) {
+          if (res.data) {
+            var nodeip = res.data["node"].split("b");
+            this.setState({
+              NodeServer: nodeip[1].toString().replace(/^'(.*)'$/, "$1")
+            });
+            var flaskip = res.data["flask"].split("b");
+            this.setState({
+              FlaskServer: flaskip[1].toString().replace(/^'(.*)'$/, "$1")
+            });
+            var javaip = res.data["java"].split("b");
+            this.setState({
+              JavaServer: javaip[1].toString().replace(/^'(.*)'$/, "$1")
+            });
+
+            console.log("printing server node " + this.state.NodeServer);
+            console.log("printing server flask " + this.state.FlaskServer);
+            console.log("printing server java " + this.state.JavaServer);
+          } else {
+            this.setState({ isSubmitted: false });
+          }
+        }.bind(this)
+      )
+      .catch(err => {
+        console.log(err);
+      });
+  }
   render() {
     return (
       <BrowserRouter>
@@ -17,7 +60,7 @@ class App extends Component {
             path="/profile"
             render={() => (
               <div className="App">
-                <UserProfile />
+                <UserProfile server={this.state.NodeServer} />
               </div>
             )}
           />
@@ -26,7 +69,7 @@ class App extends Component {
             path="/details"
             render={() => (
               <div className="App">
-                <UserDetails />
+                <UserDetails server={this.state.NodeServer} />
               </div>
             )}
           />
@@ -35,7 +78,7 @@ class App extends Component {
             path="/"
             render={() => (
               <div className="App">
-                <SearchForm />
+                <SearchForm server={this.state.FlaskServer} />
               </div>
             )}
           />
@@ -44,7 +87,7 @@ class App extends Component {
             path="/jobinterest"
             render={() => (
               <div className="App">
-                <JobInterest />
+                <JobInterest server={this.state.JavaServer} />
               </div>
             )}
           />

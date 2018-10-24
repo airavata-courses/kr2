@@ -25,7 +25,7 @@ class JobInterest extends Component {
     event.preventDefault();
 
     axios
-      .get("http://149.165.170.240:9090/jobInterest/" + this.state.email, {
+      .get("http://" + this.props.server + "/jobInterest/" + this.state.email, {
         headers: { crossDomain: true }
       })
       .then(
@@ -36,7 +36,6 @@ class JobInterest extends Component {
             this.handleDisplayChange(true);
             var newArr = this.state.jobInterest.concat(res.data);
             this.setState({ jobInterest: newArr });
-            console.log("Array: A " + this.state.jobInterest);
           } else {
             this.setState({ isSubmitted: false });
           }

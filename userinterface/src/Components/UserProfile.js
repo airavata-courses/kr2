@@ -42,7 +42,7 @@ class UserProfile extends Component {
     user["location"] = this.state.location;
 
     axios
-      .post("http://149.165.170.57:4000/api/UserProfiles", user, {
+      .post("http://" + this.props.server + "/api/UserProfiles", user, {
         headers: { crossDomain: true }
       })
       .then(function(res) {
