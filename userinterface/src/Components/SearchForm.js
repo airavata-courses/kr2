@@ -14,10 +14,7 @@ const searchlink1 = {
   paddingLeft: "80px",
   fontSize: "15px"
 };
-const searchlink2 = {
-  paddingLeft: "40px",
-  fontSize: "15px"
-};
+
 const radioStyle = {
   width: "70%"
 };
@@ -111,9 +108,7 @@ class SearchForm extends Component {
         <a href="/jobinterest" style={searchlink1}>
           JobInterest
         </a>
-        <a href="/jobrecommend" style={searchlink2}>
-          Recommendation
-        </a>
+
         <h2> US Naukri </h2>
         <form onSubmit={this.handleSearchSubmit.bind(this)} style={formStyle}>
           <div className="form-group row">
