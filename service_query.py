@@ -19,7 +19,7 @@ def service_query():
     url_flask,stat = zk.get("/usNaukri/flask")
     url_java ,stat = zk.get("/usNaukri/java")
     url_node ,stat = zk.get("/usNaukri/node")
-    # print url_flask,url_java,url_node
+    print str(url_flask),str(url_java),str(url_node)
     return jsonify({"flask":str(url_flask),"java":str(url_java),"node":str(url_node)}),200
     # return "ok"
 
