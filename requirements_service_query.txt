@@ -3,4 +3,4 @@ connexion
 Flask-Injector
 fastavro
 flask-cors
-zc.zk
+kazoo
