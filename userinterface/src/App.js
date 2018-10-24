@@ -20,7 +20,7 @@ class App extends Component {
   }
   componentDidMount() {
     axios
-      .get("http://localhost:5000/service_query", {
+      .get("http://149.165.156.241:5000/service_query", {
         headers: { crossDomain: true }
       })
       .then(

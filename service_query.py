@@ -20,7 +20,7 @@ def service_query():
     url_java ,stat = zk.get("/usNaukri/java")
     url_node ,stat = zk.get("/usNaukri/node")
     # print url_flask,url_java,url_node
-    return jsonify({"flask":url_flask,"java":url_java,"node":url_node})
+    return jsonify({"flask":str(url_flask),"java":str(url_java),"node":str(url_node)}),200
     # return "ok"
 
 if __name__ == '__main__':
