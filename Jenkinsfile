@@ -12,7 +12,7 @@ pipeline {
                 sudo /opt/kafka/bin/zookeeper-server-start.sh /opt/kafka/config/zookeeper.properties &
                 sudo kill -9 $(sudo lsof -t -i:2182)
                 sudo /opt/kafka/bin/zookeeper-server-start.sh /etc/zookeeper/conf/zoo-1.cfg &
-                sleep(1)
+                
                 if [ -n "$pid" ]
                     then
                    sudo kill -9 $pid
