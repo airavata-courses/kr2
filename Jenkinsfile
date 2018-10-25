@@ -9,8 +9,8 @@ pipeline {
                 sh 'pip3 install -r requirements.txt'
                 //sudo kill -9 $(sudo lsof -t -i:2181)
                 sh '''
-                pidz1 = sudo lsof -t -i:2181
-                pidz2 = sudo lsof -t -i:2182
+                pidz1= sudo lsof -t -i:2181
+                pidz2= sudo lsof -t -i:2182
                 if [ -n "$pidz1" ]
                 then
                 :
@@ -28,7 +28,7 @@ pipeline {
                 
                 
                 
-                pid=sudo lsof -t -i:9092
+                pid= sudo lsof -t -i:9092
                 if [ -n "$pid" ]
                 then
                     :
