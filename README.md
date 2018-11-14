@@ -8,7 +8,7 @@ This project is an attempt to profile Apache Airavata based on the logs generate
 We have executed a Gaussian experiment on Airavata api dev server through the django portal and collected the respective logs.
 Our profiler would parse the logs and report the time profile for each of the components.
 
-### Pre-requisites
+#### Pre-requisites
 1. Python3
 2. matplotlib
 
