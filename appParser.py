@@ -1,6 +1,7 @@
 import re
 import glob
 from datetime import datetime as dt
+import matplotlib.pyplot as plt
 
 # fileNamePattern="log"
 # path=/home/airavata/develop-deployment/api-orchestrator
@@ -128,6 +129,25 @@ with open("airavata.log", "r") as in_file:
 	print("Gfac start time:",getDelta(timestamp_gfac_start,timestamp_launch_end))
 	print("Gfac end time:",getDelta(timestamp_gfac_end,timestamp_launch_start))
 	print("Total Execution",getDelta(timestamp_exp_end,StartTime))
+
+	# Data to plot
+labels = 'ReqHandling', 'ExperimentLaunchTime', 'GfacStartTime', 'GfacEndTime'
+sizes = [0.548, 2.341, 0.956, 147.098]
+colors = ['gold', 'yellowgreen', 'lightcoral', 'lightskyblue']
+# explode = (0, 0, 0, 0,0)  # explode 1st slice
+ 
+# # Plot
+# plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+#         autopct='%1.1f%%', shadow=True, startangle=140)
+ 
+# plt.axis('equal')
+# plt.show()
+
+patches, texts = plt.pie(sizes, colors=colors, shadow=True, startangle=90)
+plt.legend(patches, labels, loc="best")
+plt.axis('equal')
+plt.tight_layout()
+plt.show()
 
 	
 
