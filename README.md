@@ -13,6 +13,9 @@ Our profiler would parse the logs and report the time profile for each of the co
 2. matplotlib
 
 #### Command to run
+1. git clone <repo_id>
+2. cd kr2
+3. Run the below file
 ``python3 appParser.py``
 
 #### Expected Output
