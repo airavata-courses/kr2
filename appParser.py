@@ -1,6 +1,7 @@
 import re
 import glob
 from datetime import datetime as dt
+import matplotlib.pyplot as plotter
 
 # fileNamePattern="log"
 # path=/home/airavata/develop-deployment/api-orchestrator
@@ -146,6 +147,78 @@ print(expDetails)
 
 
 # 04:57:17,770 - exp1 full logs
+
+# pie chart depiction
+# import the pyplot librar
+ 
+
+# The slice names of a population distribution pie chart
+
+#pieLabels1              = 'Asia', 'Africa', 'Europe', 'North America'
+pieLabels2             = 'India', 'china', 'Europe', 'japan'
+pieLabels3             = 'bangalore', 'mangalore', 'Europe', 'karwar'
+pieLabels1 = 'ReqHandling', 'ExperimentLaunchTime', 'GfacStartTime', 'GfacEndTime'
+sizes = [0.548, 2.341, 0.956, 147.098]
+ 
+
+# Population data
+
+populationShare     = [25,25,25,25]
+
+ 
+
+#figureObject, axesObject = plotter.subplots()
+fig, ax1 = plotter.subplots()
+ 
+#ax1, ax2, ax3, ax4 = ax.flatten()
+
+# Draw the pie chart
+
+plotter.title("Experiment Execution in Airavata: System Analysis", bbox={'facecolor':'0.8', 'pad':5})
+texts = ax1.pie(sizes,startangle=90)
+ax1.legend(pieLabels1, loc="best")
+
+
+ 
+
+# Aspect ratio - equal means pie is a circle
+
+ax1.axis('equal')
+
+
+# ax2.pie(populationShare,
+
+#         labels=pieLabels2 ,
+
+#         autopct='%1.2f',
+
+#         startangle=90)
+
+
+
+# # Aspect ratio - equal means pie is a circle
+
+# ax2.axis('equal')
+
+
+# ax3.pie(populationShare,
+
+#         labels=pieLabels3 ,
+
+#         autopct='%1.2f',
+
+#         startangle=90)
+
+
+
+# # Aspect ratio - equal means pie is a circle
+
+# ax3.axis('equal')
+
+plotter.axis('off')
+
+plotter.show()
+
 
 
 
