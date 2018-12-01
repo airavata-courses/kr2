@@ -1,7 +1,6 @@
 import re
 import glob
 from datetime import datetime as dt
-import matplotlib.pyplot as plt
 
 # fileNamePattern="log"
 # path=/home/airavata/develop-deployment/api-orchestrator
@@ -13,7 +12,8 @@ import matplotlib.pyplot as plt
 msg_id_regex = re.compile("with message id\s(\S+)")
 msg_type_regex = re.compile("with message type\s(\S+)")
 exp_id_regex = re.compile("for experimentId:\s(\S+)")
-exp_start_time = re.compile("o.a.a.m.c.i.RabbitMQPublisher  - Creating the channel for thread")
+# exp_start_time = re.compile("o.a.a.m.c.i.RabbitMQPublisher  - Creating the channel for thread")
+exp_start_time = re.compile("Airavata retrieved experiments for user")
 
 
 #assuming for a single experiment
@@ -79,8 +79,8 @@ with open("airavata.log", "r") as in_file:
 			reqHandling_time_regex = re.compile("Message Received with message id\s"+msgID)	
 			launch_time_start_regex = re.compile("Launching experiment with experimentId:\s"+expID)
 			launch_time_end_regex = re.compile("expId:\s"+expID+", Launched experiment")
-			gfac_time_start_regex = re.compile("expId:\s"+expID+", processId:"+"\s\S+"+"\s:-\s"+"Process status changed event received for status STARTED")
-			gfac_time_end_regex = re.compile("expId:\s"+expID+", processId:"+"\s\S+"+"\s:-\s"+"Process status changed event received for status COMPLETED")
+			helix_time_start_regex = re.compile("expId:\s"+expID+", processId:"+"\s\S+"+"\s:-\s"+"Process status changed event received for status STARTED")
+			helix_time_end_regex = re.compile("expId:\s"+expID+", processId:"+"\s\S+"+"\s:-\s"+"Process status changed event received for status COMPLETED")
 			exp_time_end_regex = re.compile("expId :\s"+expID+"\s:-\s"+"Experiment status updated to COMPLETED")
 
 
@@ -95,11 +95,11 @@ with open("airavata.log", "r") as in_file:
 				# print(line)
 				timestamp_launch_end=getTime(line)
 				# print(timestamp_launch_end)
-			if(gfac_time_start_regex.search(line)):
+			if(helix_time_start_regex.search(line)):
 				# print(line)
-				timestamp_gfac_start=getTime(line)
-			if(gfac_time_end_regex.search(line)):
-				timestamp_gfac_end=getTime(line)
+				timestamp_helix_start=getTime(line)
+			if(helix_time_end_regex.search(line)):
+				timestamp_helix_end=getTime(line)
 				# print(timestamp_gfac_start)
 			if(exp_time_end_regex.search(line)):
 				timestamp_exp_end=getTime(line)	
@@ -126,28 +126,9 @@ with open("airavata.log", "r") as in_file:
 
 	print("ReqHandling:",getDelta(timestamp_reqHandling,StartTime))
 	print("Experiment Launch Time:",getDelta(timestamp_launch_end,timestamp_launch_start))
-	print("Gfac start time:",getDelta(timestamp_gfac_start,timestamp_launch_end))
-	print("Gfac end time:",getDelta(timestamp_gfac_end,timestamp_launch_start))
+	print("Helix start time:",getDelta(timestamp_helix_start,timestamp_launch_end))
+	print("Helix end time:",getDelta(timestamp_helix_end,timestamp_launch_start))
 	print("Total Execution",getDelta(timestamp_exp_end,StartTime))
-
-	# Data to plot
-labels = 'ReqHandling', 'ExperimentLaunchTime', 'GfacStartTime', 'GfacEndTime'
-sizes = [0.548, 2.341, 0.956, 147.098]
-colors = ['gold', 'yellowgreen', 'lightcoral', 'lightskyblue']
-# explode = (0, 0, 0, 0,0)  # explode 1st slice
- 
-# # Plot
-# plt.pie(sizes, explode=explode, labels=labels, colors=colors,
-#         autopct='%1.1f%%', shadow=True, startangle=140)
- 
-# plt.axis('equal')
-# plt.show()
-
-patches, texts = plt.pie(sizes, colors=colors, shadow=True, startangle=90)
-plt.legend(patches, labels, loc="best")
-plt.axis('equal')
-plt.tight_layout()
-plt.show()
 
 	
 
@@ -164,7 +145,7 @@ print(expDetails)
 # 4:54:35:949 - admele
 
 
- # 04:57:17,770 - exp1 full logs
+# 04:57:17,770 - exp1 full logs
 
 
 
