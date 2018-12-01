@@ -1,9 +1,10 @@
 2018-11-09 00:10:11,208 Airavata retrieved experiments for user krkamatg@iu.edu in gateway seagrid
-2018-11-09 00:10:12,208 experiment details with expId: " + experimentId + " saved to experiment catalog
-Experiment with ExpId: " + airavataExperimentId + " was submitted in gateway with gatewayID: " + gatewayId
-Airavata retrieved experiment output for expID: " + airavataExperimentId
 
+2018-11-09 00:10:12,208 experiment details with expId: Gaussian_on_Nov_8,_2018_7:08_PM_707ff593-2c6e-417b-9db8-edb713d7e9ea saved to experiment catalog
 
+2018-11-09 00:10:17,208 Experiment with expId: Gaussian_on_Nov_8,_2018_7:08_PM_707ff593-2c6e-417b-9db8-edb713d7e9ea was submitted in gateway with gatewayID: seagrid
+
+2018-11-09 00:10:17,210 Airavata retrieved experiment output for expID: Gaussian_on_Nov_8,_2018_7:08_PM_707ff593-2c6e-417b-9db8-edb713d7e9ea
 
 2018-11-09 00:10:15,208 [pool-24-thread-49] INFO  o.a.a.m.c.i.RabbitMQPublisher  - Creating the channel for thread pool-24-thread-49 org.apache.airavata.messaging.core.impl.RabbitMQPublisher@17a2ba79
 
@@ -26,7 +27,7 @@ Airavata retrieved experiment output for expID: " + airavataExperimentId
 2018-11-09 00:10:18,093 [pool-31-thread-5] INFO  o.a.a.m.c.i.RabbitMQPublisher experiment_id=Gaussian_on_Nov_8,_2018_7:08_PM_707ff593-2c6e-417b-9db8-edb713d7e9ea, gateway_id=seagrid - Creating the channel for thread pool-31-thread-5 org.apache.airavata.messaging.core.impl.RabbitMQPublisher@181d02da
 
 2018-11-09 00:10:18,099 [pool-31-thread-5] INFO  o.a.a.o.s.OrchestratorServerHandler experiment_id=Gaussian_on_Nov_8,_2018_7:08_PM_707ff593-2c6e-417b-9db8-edb713d7e9ea, gateway_id=seagrid - expId: Gaussian_on_Nov_8,_2018_7:08_PM_707ff593-2c6e-417b-9db8-edb713d7e9ea, Launched experiment
------------------------------------------------------------- (GFAC-Airvata Server)---------------------------------------------------------- 
+------------------------------------------------------------ (GFAC-Airvata Server)----------------------------------------------------------
 
 2018-11-09 00:10:18,570 [pool-37-thread-2] INFO  o.a.a.m.c.i.RabbitMQPublisher experiment_id=Gaussian_on_Nov_8,_2018_7:08_PM_707ff593-2c6e-417b-9db8-edb713d7e9ea, gateway_id=seagrid - Creating the channel for thread pool-37-thread-2 org.apache.airavata.messaging.core.impl.RabbitMQPublisher@edcd0a6
 
@@ -53,4 +54,3 @@ Airavata retrieved experiment output for expID: " + airavataExperimentId
 2018-11-09 00:12:39,944 [pool-29-thread-6] INFO  o.a.a.o.s.OrchestratorServerHandler  - expId: Gaussian_on_Nov_8,_2018_7:08_PM_707ff593-2c6e-417b-9db8-edb713d7e9ea, processId: PROCESS_b1a8e8c8-ef73-43a2-a56a-25a31cbc476a :- Process status changed event received for status OUTPUT_DATA_STAGING
 2018-11-09 00:12:42,856 [pool-29-thread-3] INFO  o.a.a.o.s.OrchestratorServerHandler  - expId: Gaussian_on_Nov_8,_2018_7:08_PM_707ff593-2c6e-417b-9db8-edb713d7e9ea, processId: PROCESS_b1a8e8c8-ef73-43a2-a56a-25a31cbc476a :- Process status changed event received for status COMPLETED
 2018-11-09 00:12:43,095 [pool-29-thread-3] INFO  o.a.a.o.s.OrchestratorServerHandler  - expId : Gaussian_on_Nov_8,_2018_7:08_PM_707ff593-2c6e-417b-9db8-edb713d7e9ea :- Experiment status updated to COMPLETED
-
