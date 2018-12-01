@@ -168,13 +168,14 @@ populationShare     = [25,25,25,25]
  
 
 #figureObject, axesObject = plotter.subplots()
-fig, ax1 = plotter.subplots()
+fig, ax = plotter.subplots(1,2)
  
-#ax1, ax2, ax3, ax4 = ax.flatten()
+ax1, ax2 = ax.flatten()
 
 # Draw the pie chart
 
-plotter.title("Experiment Execution in Airavata: System Analysis", bbox={'facecolor':'0.8', 'pad':5})
+#plotter.title("Experiment Execution in Airavata: System Analysis", bbox={'facecolor':'0.8', 'pad':5})
+ax1.title.set_text('First Plot')
 texts = ax1.pie(sizes,startangle=90)
 ax1.legend(pieLabels1, loc="best")
 
@@ -186,19 +187,17 @@ ax1.legend(pieLabels1, loc="best")
 ax1.axis('equal')
 
 
-# ax2.pie(populationShare,
+ax2.pie(populationShare,
+        labels=pieLabels2 ,
 
-#         labels=pieLabels2 ,
+        autopct='%1.2f',
 
-#         autopct='%1.2f',
-
-#         startangle=90)
-
+       startangle=90)
 
 
+ax2.title.set_text('Second Plot')
 # # Aspect ratio - equal means pie is a circle
-
-# ax2.axis('equal')
+ax2.axis('equal')
 
 
 # ax3.pie(populationShare,
