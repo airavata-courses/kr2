@@ -1,4 +1,9 @@
-Request hndling nd Param Initilization
+2018-11-09 00:10:11,208 Airavata retrieved experiments for user krkamatg@iu.edu in gateway seagrid
+2018-11-09 00:10:12,208 experiment details with expId: " + experimentId + " saved to experiment catalog
+Experiment with ExpId: " + airavataExperimentId + " was submitted in gateway with gatewayID: " + gatewayId
+Airavata retrieved experiment output for expID: " + airavataExperimentId
+
+
 
 2018-11-09 00:10:15,208 [pool-24-thread-49] INFO  o.a.a.m.c.i.RabbitMQPublisher  - Creating the channel for thread pool-24-thread-49 org.apache.airavata.messaging.core.impl.RabbitMQPublisher@17a2ba79
 
