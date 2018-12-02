@@ -76,6 +76,7 @@ with open("airavata.log", "r") as in_file:
                     helix_time_start_regex = re.compile("expId:\s"+expID+", processId:"+"\s\S+"+"\s:-\s"+"Process status changed event received for status STARTED")
                     helix_time_end_regex = re.compile("expId:\s"+expID+", processId:"+"\s\S+"+"\s:-\s"+"Process status changed event received for status COMPLETED")
                     exp_save_to_db =  re.compile("experiment details with expId:\s"+expID+" saved to experiment catalog")
+                    exp_retr_output = re.compile("Airavata retrieved experiment output for expID:\s"+expID)
                     exp_time_end_regex = re.compile("expId :\s"+expID+"\s:-\s"+"Experiment status updated to COMPLETED")
 
                     if(reqHandling_time_regex.search(line)):
@@ -98,7 +99,8 @@ with open("airavata.log", "r") as in_file:
                         timestamp_helix_start=getTime(line)
                     if(helix_time_end_regex.search(line)):
                         timestamp_helix_end=getTime(line)
-
+                    if exp_retr_output.search(line):
+                            timestamp_retrieve_output = getTime(line)
                     if(exp_time_end_regex.search(line)):
                         timestamp_exp_end=getTime(line)
 
@@ -117,6 +119,7 @@ print("ReqHandling:",getDelta(timestamp_reqHandling,timestamp_exp_start))
 print("Experiment Launch Time:",getDelta(timestamp_launch_end,timestamp_launch_start))
 print("Helix start time:",getDelta(timestamp_helix_start,timestamp_launch_end))
 print("Helix end time:",getDelta(timestamp_helix_end,timestamp_launch_start))
+print("Experiment retrieved output time:",getDelta(timestamp_retrieve_output,timestamp_exp_start))
 print("Total Execution",getDelta(timestamp_exp_end,timestamp_exp_start))
     #
 
@@ -129,65 +132,65 @@ print("Total Execution",getDelta(timestamp_exp_end,timestamp_exp_start))
 # The slice names of a population distribution pie chart
 
 #pieLabels1              = 'Asia', 'Africa', 'Europe', 'North America'
-pieLabels2             = 'India', 'china', 'Europe', 'japan'
-pieLabels3             = 'bangalore', 'mangalore', 'Europe', 'karwar'
-pieLabels1 = 'ReqHandling', 'ExperimentLaunchTime', 'GfacStartTime', 'GfacEndTime'
-sizes = [0.548, 2.341, 0.956, 147.098]
-
-
-# Population data
-
-populationShare     = [25,25,25,25]
-
-
-
-#figureObject, axesObject = plotter.subplots()
-fig, ax = plotter.subplots(1,2)
-
-ax1, ax2 = ax.flatten()
-
-# Draw the pie chart
-
-#plotter.title("Experiment Execution in Airavata: System Analysis", bbox={'facecolor':'0.8', 'pad':5})
-ax1.title.set_text('First Plot')
-texts = ax1.pie(sizes,startangle=90)
-ax1.legend(pieLabels1, loc="best")
-
-
-
-
-# Aspect ratio - equal means pie is a circle
-
-ax1.axis('equal')
-
-
-ax2.pie(populationShare,
-        labels=pieLabels2 ,
-
-        autopct='%1.2f',
-
-       startangle=90)
-
-
-ax2.title.set_text('Second Plot')
+# pieLabels2             = 'India', 'china', 'Europe', 'japan'
+# pieLabels3             = 'bangalore', 'mangalore', 'Europe', 'karwar'
+# pieLabels1 = 'ReqHandling', 'ExperimentLaunchTime', 'GfacStartTime', 'GfacEndTime'
+# sizes = [0.548, 2.341, 0.956, 147.098]
+#
+#
+# # Population data
+#
+# populationShare     = [25,25,25,25]
+#
+#
+#
+# #figureObject, axesObject = plotter.subplots()
+# fig, ax = plotter.subplots(1,2)
+#
+# ax1, ax2 = ax.flatten()
+#
+# # Draw the pie chart
+#
+# #plotter.title("Experiment Execution in Airavata: System Analysis", bbox={'facecolor':'0.8', 'pad':5})
+# ax1.title.set_text('First Plot')
+# texts = ax1.pie(sizes,startangle=90)
+# ax1.legend(pieLabels1, loc="best")
+#
+#
+#
+#
 # # Aspect ratio - equal means pie is a circle
-ax2.axis('equal')
-
-
-# ax3.pie(populationShare,
-
-#         labels=pieLabels3 ,
-
+#
+# ax1.axis('equal')
+#
+#
+# ax2.pie(populationShare,
+#         labels=pieLabels2 ,
+#
 #         autopct='%1.2f',
-
-#         startangle=90)
-
-
-
-# # Aspect ratio - equal means pie is a circle
-
-# ax3.axis('equal')
-
-plotter.axis('off')
-
-plotter.show()
+#
+#        startangle=90)
+#
+#
+# ax2.title.set_text('Second Plot')
+# # # Aspect ratio - equal means pie is a circle
+# ax2.axis('equal')
+#
+#
+# # ax3.pie(populationShare,
+#
+# #         labels=pieLabels3 ,
+#
+# #         autopct='%1.2f',
+#
+# #         startangle=90)
+#
+#
+#
+# # # Aspect ratio - equal means pie is a circle
+#
+# # ax3.axis('equal')
+#
+# plotter.axis('off')
+#
+# plotter.show()
