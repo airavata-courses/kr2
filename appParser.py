@@ -155,8 +155,8 @@ print(expDetails)
 # The slice names of a population distribution pie chart
 
 #pieLabels1              = 'Asia', 'Africa', 'Europe', 'North America'
-pieLabels2             = 'India', 'china', 'Europe', 'japan'
-pieLabels3             = 'bangalore', 'mangalore', 'Europe', 'karwar'
+#pieLabels2             = 'India', 'china', 'Europe', 'japan'
+#pieLabels3             = 'bangalore', 'mangalore', 'Europe', 'karwar'
 pieLabels1 = 'ReqHandling', 'ExperimentLaunchTime', 'GfacStartTime', 'GfacEndTime'
 sizes = [0.548, 2.341, 0.956, 147.098]
  
