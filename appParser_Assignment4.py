@@ -152,6 +152,31 @@ with open("airavata.log", "r") as in_file:
 
 timestamp_output_data_staging = getDelta(max(datelist), min(datelist))
 
+Apiserver=getDelta(timestamp_api_server_launched,timestamp_exp_start)
+Orchestrator=getDelta(timestamp_orchestrator_launch_end,timestamp_api_server_launched)
+Helix=getDelta(timestamp_exp_end,timestamp_orchestrator_launch_end)
+
+userPermissionChecks=getDelta(timestamp_retr_user,timestamp_exp_start)
+saveToDB=getDelta(timestamp_save_db,timestamp_retr_user)
+experimentCreation=getDelta(timestamp_exp_created,timestamp_save_db)
+apiServerLaunch=getDelta(timestamp_api_server_launched,timestamp_exp_created)
+
+queueValidation=getDelta(timestamp_batch_queue,timestamp_orchestrator_launch_start)
+expStatusValidation=getDelta(timestamp_status_queue,timestamp_batch_queue)
+orchestratorLaunch=getDelta(timestamp_orchestrator_launch_end,timestamp_orchestrator_launch_start)
+
+processCreation=getDelta(timestamp_process_status_started,timestamp_orchestrator_launch_end)
+helixProcessMapping=getDelta(timestamp_helix_start,timestamp_process_status_started)
+t1_configWorkSpace=getDelta(timestamp_config_workspace,timestamp_helix_start)
+t2_inputDataStaging=getDelta(timestamp_input_data_staging,timestamp_config_workspace)
+# print(timestamp_output_data_staging)
+t3_outputDataStaging=getDelta(max(datelist),timestamp_input_data_staging)
+# computeResourceProcessExecution=getDelta()
+# print(Apiserver,Orchestrator,Helix)
+experimentCompletion=getDelta(timestamp_exp_end,max(datelist))
+
+
+
 # get_Output_Data_Staging()
 #
 #
