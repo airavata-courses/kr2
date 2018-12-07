@@ -6,9 +6,7 @@ import mmap
 with open('airavata.log', 'r') as raw_log: #api dev server raw logs
     
     # size 0 means whole file, prot for Unix version
-    mmap = mmap.mmap(raw_log.fileno(), 0, prot=mmap.PROT_READ)  
-                          
-
+    mmap = mmap.mmap(raw_log.fileno(), 0, prot=mmap.PROT_READ)
     startIndex = mmap.rfind('Experiment Created') # search for last occurrence of 'string'
     				   
     mmap.seek(startIndex)             # seek to the location
@@ -17,8 +15,8 @@ with open('airavata.log', 'r') as raw_log: #api dev server raw logs
     
     line=mmap.readline()
     with open('processed.log', 'a') as processed_log:
-    	while (line):  
-    		# print(line)
-    		processed_log.write(line)
-    		line=mmap.readline()
+        while (line):
+            # print(line)
+            processed_log.write(line)
+            line=mmap.readline()
     
