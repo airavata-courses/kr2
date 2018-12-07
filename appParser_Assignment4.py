@@ -5,6 +5,7 @@ from datetime import datetime as dt
 
 
 # import matplotlib.pyplot as plotter
+import matplotlib.pyplot as plotter
 
 
 
@@ -224,70 +225,47 @@ print("Expirement end", timestamp_exp_end)
 
 
 
-# pie chart depiction
 
 
-# The slice names of a population distribution pie chart
-
-# pieLabels2 = 'India', 'china', 'Europe', 'japan'
-# pieLabels1 = 'ReqHandling', 'ExperimentLaunchTime', 'HelixStartTime', 'HelixEndTime'
-
-# sizes = [0.548, 2.341, 0.956, 147.098]
-
-
-
-
-# populationShare     = [25,25,25,25]
-
-
-
-# #figureObject, axesObject = plotter.subplots()
-# fig, ax = plotter.subplots(1,2)
-
-# ax1, ax2 = ax.flatten()
-
-# # Draw the pie chart
-
-# #plotter.title("Experiment Execution in Airavata: System Analysis", bbox={'facecolor':'0.8', 'pad':5})
-# ax1.title.set_text('First Plot')
-# texts = ax1.pie(sizes,startangle=90)
-# ax1.legend(pieLabels1, loc="best")
+pieLabels1 = 'ApiServer', 'Orchestrator', 'Helix'
+pieLabels2 = 'UserPermissionChecks', 'SaveToDB', 'ExperimentCreation', 'ApiServerLaunch'
+pieLabels3 = 'QueueValidation', 'ExperimentStatusValidation', 'OrchestratorLaunch'
+pieLabels4 = 'ProcessCreation', 'HelixProcessMapping', 'T1-ConfigWorkSpace', 'T2-InputDataStaging','T3-OutputDataStaging','ExperimentCompletion'
+durationForPlot1 = [Apiserver, Orchestrator, Helix] 
+durationForPlot2 = [userPermissionChecks,saveToDB,experimentCreation,apiServerLaunch]
+durationForPlot3 = [queueValidation, expStatusValidation, orchestratorLaunch]
+durationForPlot4 = [processCreation,helixProcessMapping,t1_configWorkSpace,t2_inputDataStaging,t3_outputDataStaging,experimentCompletion]
 
 
 
 
-# # Aspect ratio - equal means pie is a circle
+fig, ax = plotter.subplots(2,2)
+ 
+ax1, ax2, ax3, ax4 = ax.flatten()
 
-# ax1.axis('equal')
+# Draw the pie chart
 
+#plotter.title("Experiment Execution in Airavata: System Analysis", bbox={'facecolor':'0.8', 'pad':5})
+ax1.title.set_text('Total Execution Profile')
+texts = ax1.pie(durationForPlot1,startangle=90)
+ax1.legend(pieLabels1, loc=2,prop={'size': 8})
+ax1.axis('equal')
 
-# ax2.pie(populationShare,
-#         labels=pieLabels2 ,
+ax2.title.set_text('ApiServer Component')
+texts = ax2.pie(durationForPlot2,startangle=90)
+ax2.legend(pieLabels2, loc=2,prop={'size': 8})
+ax2.axis('equal')
 
-#         autopct='%1.2f',
+ax3.title.set_text('Orchestrator Component')
+texts = ax3.pie(durationForPlot3,startangle=90)
+ax3.legend(pieLabels3, loc=2,prop={'size': 8})
+ax3.axis('equal')
 
-#        startangle=90)
+ax4.title.set_text('Helix Component')
+texts = ax4.pie(durationForPlot4,startangle=90)
+ax4.legend(pieLabels4, loc=2,prop={'size': 8})
+ax4.axis('equal')
 
+#plotter.axis('off')
 
-# ax2.title.set_text('Second Plot')
-# # # Aspect ratio - equal means pie is a circle
-# ax2.axis('equal')
-
-
-# # ax3.pie(populationShare,
-
-# #         labels=pieLabels3 ,
-
-# #         autopct='%1.2f',
-
-# #         startangle=90)
-
-
-
-# # # Aspect ratio - equal means pie is a circle
-
-# # ax3.axis('equal')
-
-# plotter.axis('off')
-
-# plotter.show()
+plotter.show()
