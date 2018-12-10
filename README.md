@@ -16,7 +16,7 @@ Our profiler would parse the logs and report the time profile for each of the co
 1. git clone <repo_id>
 2. cd kr2
 3. Run the below file
-``python3 appParser.py``
+``python3 appParser_Assignment4.py``
 
 #### Expected Output
 Pie chart with time profiles for each components.
