@@ -14,6 +14,7 @@ Our profiler would parse the logs and report the time profile for each of the co
 
 #### Command to run
 1. git clone <repo_id>
+2. git checkout AiravataProfile
 2. cd kr2
 3. Run the below file
 ``python3 appParser_Assignment4.py``
